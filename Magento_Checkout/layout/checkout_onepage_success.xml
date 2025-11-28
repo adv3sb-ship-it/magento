@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.wrapper">
+            <block class="Triniti\Main\Block\Header" name="theme_header" template="Triniti_Main::html/order_header.phtml"
+                   before="-">
+            </block>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional" remove="true"/>
+        <referenceBlock name="top.search" remove="true"/>
+        <referenceBlock name="custom.links" remove="true"/>
+        <referenceBlock name="minicart" remove="true"/>
+        <referenceBlock name="bss.osc.style" remove="true"/>
+        <referenceContainer name="footer-container" remove="true"/>
+        <referenceBlock name="header.panel.wrapper" remove="true"/>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Home</item>
+                    <item name="label" xsi:type="string" translate="true">Home</item>
+                    <item name="link" xsi:type="string">../../../</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">product</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Checkout success</item>
+                    <item name="label" xsi:type="string" translate="true">Checkout success</item>
+                </argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

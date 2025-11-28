@@ -1,0 +1,16 @@
+<input class="input-text checkout__phone-input" type="tel" placeholder="+38 (___) ___ __ __" data-bind="
+    value: value,
+    valueUpdate: 'keyup',
+    hasFocus: focused,
+    mask: '+38 (ABC) 000 00 00',
+    attr: {
+        name: inputName,
+        'aria-describedby': getDescriptionId(),
+        'aria-required': required,
+        'aria-invalid': error() ? true : 'false',
+        id: uid,
+        disabled: disabled
+    }"
+   data-validate="{required:true, 'validate-phone':true}"
+/>
+

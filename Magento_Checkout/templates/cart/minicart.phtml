@@ -1,0 +1,64 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Magento\Checkout\Block\Cart\Sidebar */
+?>
+<div class="action-container">
+    <button id="cart-btn" class="cart-btn not-active" type="button" data-bind="scope: 'minicart_content'">
+         <span class="basket_img_line">
+            <img width="24" height="24" src="<?= $block->getViewFileUrl('images/triniti-img-icon/cart.svg'); ?>" alt="cart">
+        </span>
+        <span class="counter sum inner empty "
+              data-bind="css: { empty: !!getCartParam('summary_count') == false }, blockLoader: isLoading">
+            <!-- ko if: getCartParam('summary_count') -->
+            <span class="counter-number"><!-- ko text: getCartParam('items') ? getCartParam('items').length : 0 --><!-- /ko --></span>
+            <!-- /ko -->
+
+            <!-- ko ifnot: getCartParam('summary_count') -->
+<!--				<span class="counter-number">0</span>-->
+            <!-- /ko -->
+        </span>
+        <div class="ko-concetp">
+            <div data-bind="text: updateList()"></div>
+        </div>
+    </button>
+    <div class="block block-minicart"
+         data-role="dropdownDialog"
+         style="display: none;"
+         data-mage-init='{"dropdownDialog":{
+                "appendTo":"[data-block=minicart]",
+                "timeout": "500",
+                "closeOnMouseLeave": false,
+                "closeOnClickOutside": false,
+                "closeOnEscape": true,
+                "parentClass":"active",
+                "show": { "effect": "blind" },
+                "buttons":[]}}'>
+        <div id="minicart-content-wrapper" data-bind="scope: 'minicart_content'">
+            <!-- ko template: getTemplate() --><!-- /ko -->
+        </div>
+    </div>
+    <script>
+        window.checkout = <?= /* @escapeNotVerified */ $block->getSerializedConfig() ?>;
+    </script>
+    <script type="text/x-magento-init">
+    {
+        "[data-block='minicart']": {
+            "Magento_Ui/js/core/app": <?= /* @escapeNotVerified */
+        $block->getJsLayout() ?>
+        },
+        "*": {
+            "Magento_Ui/js/block-loader": "<?= /* @escapeNotVerified */
+        $block->getViewFileUrl('images/loader-1.gif') ?>"
+        }
+    }
+
+    </script>
+</div>
+
+

@@ -1,0 +1,21 @@
+<!--
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+-->
+<!-- ko if: quoteIsVirtual == 0 -->
+<div class="flex">
+    <span class="text" data-bind="i18n: title"></span>
+    <span class="delivery">
+        <!-- ko if: isCalculated() -->
+            <span class="price"
+              data-bind="text: getPrintedValue(), attr: {'data-th': title}"></span>
+        <!-- /ko -->
+        <!-- ko ifnot: isCalculated() -->
+            <span class="not-calculated"
+                  data-bind="text: getValue(), attr: {'data-th': title}"></span>
+        <!-- /ko -->
+    </span>
+</div>
+<!-- /ko -->

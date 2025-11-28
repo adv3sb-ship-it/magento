@@ -1,0 +1,454 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * BSS Commerce Co.
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the EULA
+ * that is bundled with this package in the file LICENSE.txt.
+ * It is also available through the world-wide-web at this URL:
+ * http://bsscommerce.com/Bss-Commerce-License.txt
+ *
+ * @category   BSS
+ * @package    Bss_OneStepCheckout
+ * @author     Extension Team
+ * @copyright  Copyright (c) 2017-2018 BSS Commerce Co. ( http://bsscommerce.com )
+ * @license    http://bsscommerce.com/Bss-Commerce-License.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="checkout_index_index"/>
+    <body>
+        <attribute name="class" value="bss-onestepcheckout"/>
+        <attribute name="class" value="checkout-index-index"/>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/onepage</item>
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="cart_items" xsi:type="array">
+                                            <item name="component" xsi:type="string">Triniti_Main/js/view/summary/cart-items</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="details" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/summary/item/details</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="thumbnail" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Magento_Checkout/js/view/summary/item/details/thumbnail</item>
+                                                            <item name="displayArea" xsi:type="string">before_details</item>
+                                                            <item name="template" xsi:type="string">Triniti_Main/summary/item/details/thumbnail</item>
+                                                        </item>
+                                                        <item name="subtotal_short" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Magento_Checkout/js/view/summary/item/details/subtotal</item>
+                                                            <item name="displayArea" xsi:type="string">after_short_info</item>
+                                                            <item name="template" xsi:type="string">Triniti_Main/summary/item/details/subtotal_short</item>
+                                                        </item>
+                                                        <item name="subtotal" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Magento_Checkout/js/view/summary/item/details/subtotal</item>
+                                                            <item name="displayArea" xsi:type="string">after_details</item>
+                                                            <item name="template" xsi:type="string">Triniti_Main/summary/item/details/subtotal</item>
+                                                        </item>
+                                                        <item name="message" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/summary/item/details/message</item>
+                                                            <item name="displayArea" xsi:type="string">item_message</item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                            <item name="displayArea" xsi:type="string">steps</item>
+                                            <item name="sortOrder" xsi:type="string">0</item>
+                                        </item>
+                                        <item name="bss-store-selector" xsi:type="array">
+                                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/bss-store-selector-group</item>
+                                            <item name="sortOrder" xsi:type="string">1</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                <item name="template" xsi:type="string">Bss_OneStepCheckout/bss-store-selector-group</item>
+                                            </item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="bssStoreSelector" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/bss-store-selector</item>
+                                                    <item name="displayArea" xsi:type="string">bss-selector</item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/shipping</item>
+                                                    <item name="template" xsi:type="string">Triniti_Main/shipping</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/form/element/email</item>
+                                                            <item name="tooltip" xsi:type="boolean">false</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="tooltip" xsi:type="boolean">false</item>
+                                                            </item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="after-login-form" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">uiComponent</item>
+                                                                    <item name="displayArea" xsi:type="string">after-login-form</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <item name="social-buttons" xsi:type="array">
+                                                                            <item name="component" xsi:type="string">Mageplaza_SocialLogin/js/view/social-buttons</item>
+                                                                            <item name="config" xsi:type="array">
+                                                                                <item name="template" xsi:type="string">Mageplaza_SocialLogin/checkout-social-buttons</item>
+                                                                            </item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="address-list" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/shipping-address/list</item>
+                                                        </item>
+                                                        <item name="before-shipping-method-form" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="city_novaposhta_ref" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Yu_NovaPoshta/js/view/city</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                                        <item name="elementTmpl" xsi:type="string">Yu_NovaPoshta/city</item>
+                                                                        <item name="customScope" xsi:type="string">shippingAddress</item>
+                                                                        <item name="imports" xsi:type="array">
+                                                                            <item name="setOptions" xsi:type="string">index = checkoutProvider:dictionaries.city</item>
+                                                                        </item>
+                                                                        <item name="city_fast" xsi:type="array"></item>
+                                                                        <item name="visible" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                    <item name="dataScope" xsi:type="string">before-shipping-method-form.city_novaposhta_ref</item>
+                                                                    <item name="provider" xsi:type="string">checkoutProvider</item>
+                                                                    <item name="sortOrder" xsi:type="string">5</item>
+                                                                    <item name="label" xsi:type="string" translate="true">City</item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="required-entry" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                </item>
+                                                                <!-- address-list-additional-addresses -->
+                                                                <item name="bss_osc_delivery_date" xsi:type="array">
+                                                                    <item name="label" xsi:type="string" translate="true">Delivery Date</item>
+                                                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/form/element/date</item>
+                                                                    <item name="dataScope" xsi:type="string">before-shipping-method-form.bss_osc_delivery_date</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                                        <item name="options" xsi:type="array">
+                                                                            <item name="timeFormat" xsi:type="string">HH:mm</item>
+                                                                            <item name="showsTime" xsi:type="string">true</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="bss_osc_delivery_comment" xsi:type="array">
+                                                                    <item name="label" xsi:type="string" translate="true">Delivery Comment</item>
+                                                                    <item name="component" xsi:type="string">Magento_Ui/js/form/element/textarea</item>
+                                                                    <item name="dataScope" xsi:type="string">before-shipping-method-form.bss_osc_delivery_comment</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">ui/form/field</item>
+                                                                        <item name="elementTmpl" xsi:type="string">ui/form/element/textarea</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="shipping-address-fieldset" xsi:type="array">
+
+
+
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="firstname" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">21</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="placeholder" xsi:type="string" translate="true">Enter name</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="lastname" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">20</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                    <item name="placeholder" xsi:type="string" translate="true">Enter surname</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="middlename" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">22</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="placeholder" xsi:type="string" translate="true">Enter second name</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="company" xsi:type="array">
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="min_text_length" xsi:type="number">0</item>
+                                                                    </item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                                        <item name="template" xsi:type="string">Triniti_Main/form/element/checkout/field</item>
+                                                                        <item name="elementTmpl" xsi:type="string">Triniti_Main/form/element/checkout/input</item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="telephone" xsi:type="array">
+                                                                    <item name="sortOrder" xsi:type="string">23</item>
+                                                                    <item name="validation" xsi:type="array">
+                                                                        <item name="validate-phone" xsi:type="boolean">true</item>
+                                                                        <item name="validate_phone" xsi:type="boolean">true</item>
+                                                                    </item>
+                                                                    <item name="component" xsi:type="string">Triniti_Main/js/view/masked</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="tooltip" xsi:type="boolean">false</item>
+                                                                        <item name="elementTmpl" xsi:type="string">Magento_Checkout/form/element/telephone</item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="store-pickup" xsi:type="array">
+                                            <item name="sortOrder" xsi:type="string">500</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="store-selector" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/payment</item>
+                                                    <item name="template" xsi:type="string">Triniti_Main/payment</item>
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="customer-email" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/form/element/email</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="tooltip" xsi:type="boolean">false</item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="payments-list" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/payment/list</item>
+                                                            <item name="template" xsi:type="string">Bss_OneStepCheckout/payment-methods/list</item>
+                                                        </item>
+                                                        <item name="additional-payment-validators" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="agreements-validator" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/agreement-validation</item>
+                                                                </item>
+                                                                <item name="create-new-account-validator" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/create-new-account-validation</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="afterMethods" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="rewards-form" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Mirasvit_RewardsCheckout/js/checkout/rewards_points</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <item name="errors" xsi:type="array">
+                                                                            <item name="sortOrder" xsi:type="string">0</item>
+                                                                            <item name="component" xsi:type="string">Mirasvit_RewardsCheckout/js/view/checkout/messages</item>
+                                                                            <item name="displayArea" xsi:type="string">rewards-messages</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="discount" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/payment/discount</item>
+                                                                </item>
+                                                                <item name="osc_widget_under_payment" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/osc-widget</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">Bss_OneStepCheckout/widget/osc-widget-payment</item>
+                                                                    </item>
+                                                                    <item name="sortOrder" xsi:type="string">10</item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="bss_osc_order_comment" xsi:type="array">
+                                            <item name="component" xsi:type="string">Magento_Ui/js/form/element/textarea</item>
+                                            <item name="label" xsi:type="string" translate="true">Order Comment</item>
+                                            <item name="displayArea" xsi:type="string">summary</item>
+                                            <item name="sortOrder" xsi:type="string">220</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="template" xsi:type="string">Bss_OneStepCheckout/form/order-comment</item>
+                                                <item name="placeholder" xsi:type="string" translate="true">Your comment</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="config" xsi:type="array">
+                                        <item name="template" xsi:type="string">Bss_OneStepCheckout/sidebar</item>
+                                    </item>
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="cart_items" xsi:type="array">
+                                                    <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                </item>
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="rewards-spend" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Mirasvit_RewardsCheckout/js/view/checkout/rewards/points_spend</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                                <item name="template" xsi:type="string">Mirasvit_RewardsCheckout/checkout/rewards/points_spend</item>
+                                                                <item name="title" xsi:type="string" translate="true">You Spend</item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="gift_wrap" xsi:type="array">
+                                                            <item name="component"  xsi:type="string">Bss_OneStepCheckout/js/view/checkout/summary/gift-wrap</item>
+                                                            <item name="sortOrder" xsi:type="string">60</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Bss_OneStepCheckout/checkout/summary/gift-wrap</item>
+                                                                <item name="title" xsi:type="string" translate="true">Gift Wrap</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="osc_widget_under_summary" xsi:type="array">
+                                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/osc-widget</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="template" xsi:type="string">Bss_OneStepCheckout/widget/osc-widget-summary</item>
+                                            </item>
+                                            <item name="sortOrder" xsi:type="string">210</item>
+                                            <item name="displayArea" xsi:type="string">summary</item>
+                                        </item>
+                                        <item name="bss_osc_order_comment" xsi:type="array">
+                                            <item name="component" xsi:type="string">Magento_Ui/js/form/element/textarea</item>
+                                            <item name="label" xsi:type="string" translate="true">Order Comment</item>
+                                            <item name="displayArea" xsi:type="string">summary</item>
+                                            <item name="sortOrder" xsi:type="string">220</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                <item name="template" xsi:type="string">Bss_OneStepCheckout/form/order-comment</item>
+                                            </item>
+                                        </item>
+                                        <item name="giftmessage" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="sortOrder" xsi:type="string">240</item>
+                                            <item name="displayArea" xsi:type="string">summary</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="giftOptionsCart" xsi:type="array">
+                                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/gift-message</item>
+                                                    <item name="config" xsi:type="array">
+                                                        <item name="template" xsi:type="string">Bss_OneStepCheckout/gift-message</item>
+                                                        <item name="formTemplate" xsi:type="string">Magento_GiftMessage/gift-message-form</item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="gift_wrap" xsi:type="array">
+                                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/checkout/use-gift-wrap</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="template" xsi:type="string">Bss_OneStepCheckout/checkout/use-gift-wrap</item>
+                                            </item>
+                                            <item name="sortOrder" xsi:type="string">245</item>
+                                            <item name="displayArea" xsi:type="string">summary</item>
+                                        </item>
+                                        <item name="subscribe" xsi:type="array">
+                                            <item name="component" xsi:type="string">Magento_Ui/js/form/element/boolean</item>
+                                            <item name="displayArea" xsi:type="string">summary</item>
+                                            <item name="sortOrder" xsi:type="string">250</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="template" xsi:type="string">ui/form/element/checkbox</item>
+                                                <item name="checked" xsi:type="boolean">false</item>
+                                                <item name="componentDisabled" xsi:type="boolean">true</item>
+                                                <item name="description" xsi:type="string" translate="true">Check to Subscribe Our Newsletter</item>
+                                                <item name="dataType" xsi:type="string">boolean</item>
+                                                <item name="formElement" xsi:type="string">checkbox</item>
+                                            </item>
+                                        </item>
+                                        <item name="grand-total" xsi:type="array">
+                                            <item name="component"  xsi:type="string">Magento_Checkout/js/view/summary/grand-total</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="title" xsi:type="string" translate="true">Order Total</item>
+                                                <item name="template" xsi:type="string">Magento_Checkout/cart/totals/grand-total</item>
+                                            </item>
+                                            <item name="displayArea" xsi:type="string">summary</item>
+                                            <item name="sortOrder" xsi:type="string">260</item>
+                                        </item>
+                                        <item name="place-order-btn" xsi:type="array">
+                                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/place-order-btn</item>
+                                            <item name="displayArea" xsi:type="string">summary</item>
+                                            <item name="sortOrder" xsi:type="string">270</item>
+                                        </item>
+                                        <item name="osc_widget_under_button" xsi:type="array">
+                                            <item name="component" xsi:type="string">Bss_OneStepCheckout/js/view/osc-widget</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="template" xsi:type="string">Bss_OneStepCheckout/widget/osc-widget-button</item>
+                                            </item>
+                                            <item name="sortOrder" xsi:type="string">280</item>
+                                            <item name="displayArea" xsi:type="string">summary</item>
+                                        </item>
+                                        <item name="agreements" xsi:type="array">
+                                            <item name="class" xsi:type="string">the-class</item>
+                                            <item name="component" xsi:type="string">Magento_CheckoutAgreements/js/view/checkout-agreements</item>
+                                            <item name="template" xsi:type="string">Bss_OneStepCheckout/checkout/checkout-agreements</item>
+                                            <item name="sortOrder" xsi:type="string">290</item>
+                                            <item name="displayArea" xsi:type="string">summary</item>
+                                            <item name="dataScope" xsi:type="string">checkoutAgreements</item>
+                                            <item name="provider" xsi:type="string">checkoutProvider</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="class" xsi:type="string">the-class</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="autocomplete" xsi:type="array">
+                                    <item name="sortOrder" xsi:type="string">250</item>
+                                    <item name="component" xsi:type="string">Bss_OneStepCheckout/js/model/autocomplete</item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="page.wrapper">
+            <block class="Triniti\Main\Block\Header" name="theme_header" template="Triniti_Main::html/order_header.phtml"
+                   before="-">
+            </block>
+        </referenceContainer>
+        <referenceContainer name="sidebar.additional" remove="true"/>
+        <referenceBlock name="top.search" remove="true"/>
+        <referenceBlock name="custom.links" remove="true"/>
+        <referenceBlock name="minicart" remove="true"/>
+        <referenceBlock name="bss.osc.style" remove="true"/>
+        <referenceContainer name="footer-container" remove="true"/>
+        <referenceBlock name="header.panel.wrapper" remove="true"/>
+        <referenceBlock name="product.info.newsletter" remove="true"/>
+        <referenceBlock name="page.main.title" remove="true"/>
+        <referenceBlock name="social-login-popup-authentication">
+            <arguments>
+                <argument name="hide_register" xsi:type="boolean">false</argument>
+            </arguments>
+        </referenceBlock>
+        <referenceBlock name="breadcrumbs">
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">home</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" translate="true" xsi:type="string">Home</item>
+                    <item name="label" translate="true" xsi:type="string">Home</item>
+                    <item name="link" xsi:type="string">../</item>
+                </argument>
+            </action>
+            <action method="addCrumb">
+                <argument name="crumbName" xsi:type="string">checkout</argument>
+                <argument name="crumbInfo" xsi:type="array">
+                    <item name="title" translate="true" xsi:type="string">Checkout</item>
+                    <item name="label" translate="true" xsi:type="string">Checkout</item>
+                </argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>
