@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mst_attachment" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Attachments</label>
+            <tab>mirasvit</tab>
+            <resource>Mirasvit_Attachment::attachment_config</resource>
+
+            <group id="general" showInDefault="1" showInStore="1" showInWebsite="1" sortOrder="10">
+                <label>General Settings</label>
+
+                <field id="default_order" translate="label" type="select" sortOrder="10" showInDefault="1">
+                    <label>Default Sort Order</label>
+                    <source_model>Mirasvit\Attachment\Model\Config\Source\DefaultSortDirection</source_model>
+                    <comment>Define attachments soring direction if position is the same</comment>
+                </field>
+            </group>
+
+            <group id="product_tab" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product Tab</label>
+
+                <field id="is_enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Product Tab</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="label" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tab Title</label>
+                </field>
+
+                <field id="position" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Tab Position</label>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

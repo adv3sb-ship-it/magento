@@ -1,0 +1,77 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Mirasvit\Attachment\Api\Data\AttachmentInterface" type="Mirasvit\Attachment\Model\Attachment"/>
+    <preference for="Mirasvit\Attachment\Api\Data\IconInterface" type="Mirasvit\Attachment\Model\Icon"/>
+    <preference for="Mirasvit\Attachment\Api\Data\LinkInterface" type="Mirasvit\Attachment\Model\Link"/>
+    <preference for="Mirasvit\Attachment\Api\Data\HistoryInterface" type="Mirasvit\Attachment\Model\History"/>
+
+    <!--Entity Manager-->
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Mirasvit\Attachment\Api\Data\AttachmentInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\Attachment\Api\Data\AttachmentInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\Attachment\Api\Data\AttachmentInterface::ID</item>
+                </item>
+                <item name="Mirasvit\Attachment\Api\Data\IconInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\Attachment\Api\Data\IconInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\Attachment\Api\Data\IconInterface::ID</item>
+                </item>
+                <item name="Mirasvit\Attachment\Api\Data\LinkInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\Attachment\Api\Data\LinkInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\Attachment\Api\Data\LinkInterface::ID</item>
+                </item>
+                <item name="Mirasvit\Attachment\Api\Data\HistoryInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\Attachment\Api\Data\HistoryInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\Attachment\Api\Data\HistoryInterface::ID</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Mirasvit\Attachment\Api\Data\AttachmentInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Mirasvit\Attachment\Api\Data\IconInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Mirasvit\Attachment\Api\Data\LinkInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Mirasvit\Attachment\Api\Data\HistoryInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--UI-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="attachment_attachment_listing_data_source" xsi:type="string">Mirasvit\Attachment\Model\ResourceModel\Attachment\Grid</item>
+                <item name="attachment_icon_listing_data_source" xsi:type="string">Mirasvit\Attachment\Model\ResourceModel\Icon\Grid</item>
+                <item name="attachment_attachment_grid_data_source" xsi:type="string">Mirasvit\Attachment\Model\ResourceModel\Attachment\Grid</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Cms\Model\Page\DataProvider">
+        <plugin name="addAttachmentTabToCmsPageEditPlugin" type="\Mirasvit\Attachment\Plugin\Backend\AddAttachmentTabToCmsPageEditPlugin"/>
+    </type>
+    <type name="Magento\Cms\Controller\Adminhtml\Page\Save">
+        <plugin name="addAttachmentBeforeCmsPageSavePlugin" type="\Mirasvit\Attachment\Plugin\Backend\AddAttachmentBeforeCmsPageSavePlugin"/>
+    </type>
+
+
+    <type name="Magento\Catalog\Model\Category\DataProvider">
+        <plugin name="addAttachmentTabToCategoryEditPlugin" type="\Mirasvit\Attachment\Plugin\Backend\AddAttachmentTabToCategoryEditPlugin"/>
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Category\Save">
+        <plugin name="addAttachmentBeforeCategorySavePlugin" type="\Mirasvit\Attachment\Plugin\Backend\AddAttachmentBeforeCategorySavePlugin"/>
+    </type>
+
+    <type name="Magento\Catalog\Ui\DataProvider\Product\Form\ProductDataProvider">
+        <plugin name="addAttachmentTabToProductEditPlugin" type="\Mirasvit\Attachment\Plugin\Backend\AddAttachmentTabToProductEditPlugin"/>
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Save">
+        <plugin name="addAttachmentBeforeProductSavePlugin" type="\Mirasvit\Attachment\Plugin\Backend\AddAttachmentBeforeProductSavePlugin"/>
+    </type>
+
+
+</config>

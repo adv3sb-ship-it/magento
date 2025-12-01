@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mirasvit_Attachment::attachment"
+             title="Attachments"
+             module="Mirasvit_Attachment"
+             sortOrder="20"
+             resource="Mirasvit_Attachment::attachment"
+             parent="Magento_Catalog::catalog"
+        />
+        <add id="Mirasvit_Attachment::manage_attachment"
+             title="Manage Attachments"
+             module="Mirasvit_Attachment"
+             sortOrder="30"
+             action="mst_attachment/attachment/index"
+             resource="Mirasvit_Attachment::manage_attachment"
+             parent="Mirasvit_Attachment::attachment"
+        />
+        <add id="Mirasvit_Attachment::icon"
+             title="Icons"
+             module="Mirasvit_Attachment"
+             sortOrder="40"
+             action="mst_attachment/icon/index"
+             resource="Mirasvit_Attachment::icon"
+             parent="Mirasvit_Attachment::attachment"
+        />
+        <add id="Mirasvit_Attachment::attachment_config"
+             title="Configuration"
+             module="Mirasvit_Attachment"
+             sortOrder="50"
+             action="admin/system_config/edit/section/mst_attachment"
+             resource="Mirasvit_Attachment::attachment_config"
+             parent="Mirasvit_Attachment::attachment"
+        />
+    </menu>
+</config>

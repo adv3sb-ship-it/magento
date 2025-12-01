@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="mst_attachment_icon" resource="default" engine="innodb" comment="mst_attachment_icon">
+    <column xsi:type="int" name="icon_id" padding="10" unsigned="true" nullable="false" identity="true" comment="icon_id"/>
+    <column xsi:type="int" name="is_active" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="is_active"/>
+    <column xsi:type="varchar" name="label" nullable="false" length="255" comment="label"/>
+    <column xsi:type="varchar" name="types" nullable="false" length="255" comment="types"/>
+    <column xsi:type="varchar" name="icon_path" nullable="false" length="255" comment="icon_path"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="icon_id"/>
+    </constraint>
+  </table>
+  <table name="mst_attachment" resource="default" engine="innodb" comment="mst_attachment">
+    <column xsi:type="int" name="attachment_id" padding="10" unsigned="true" nullable="false" identity="true" comment="attachment_id"/>
+    <column xsi:type="int" name="is_active" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="is_active"/>
+    <column xsi:type="varchar" name="type" nullable="false" length="255" comment="type"/>
+    <column xsi:type="varchar" name="source_name" nullable="true" length="255" comment="source_name"/>
+    <column xsi:type="varchar" name="file_path" nullable="true" length="255" comment="file_path"/>
+    <column xsi:type="varchar" name="file_type" nullable="true" length="255" comment="file_type"/>
+    <column xsi:type="varchar" name="label" nullable="false" length="255" comment="label"/>
+    <column xsi:type="int" name="icon_id" padding="10" unsigned="true" nullable="true" identity="false" comment="icon_id"/>
+    <column xsi:type="varchar" name="customer_group_ids" nullable="false" length="255" comment="customer_group_ids"/>
+    <column xsi:type="varchar" name="store_ids" nullable="false" length="255" comment="store_ids"/>
+    <column xsi:type="int" name="attachment_position" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="attachment_position"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="attachment_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="MST_ATTACHMENT_ICON_ID_MST_ATTACHMENT_ICON_ICON_ID" table="mst_attachment" column="icon_id" referenceTable="mst_attachment_icon" referenceColumn="icon_id" onDelete="SET NULL"/>
+  </table>
+  <table name="mst_attachment_link" resource="default" engine="innodb" comment="mst_attachment_link">
+    <column xsi:type="int" name="link_id" padding="10" unsigned="true" nullable="false" identity="true" comment="link_id"/>
+    <column xsi:type="int" name="attachment_id" padding="10" unsigned="true" nullable="false" identity="false" comment="attachment_id"/>
+    <column xsi:type="varchar" name="entity_type" nullable="false" length="255" comment="entity_type"/>
+    <column xsi:type="int" name="entity_pk_value" padding="10" unsigned="true" nullable="false" identity="false" comment="entity_pk_value"/>
+    <column xsi:type="int" name="position" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="position"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="link_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="MST_ATTACHMENT_LINK_ATTACHMENT_ID_MST_ATTACHMENT_ATTACHMENT_ID" table="mst_attachment_link" column="attachment_id" referenceTable="mst_attachment" referenceColumn="attachment_id" onDelete="CASCADE"/>
+  </table>
+  <table name="mst_attachment_history" resource="default" engine="innodb" comment="mst_attachment_history">
+    <column xsi:type="int" name="history_id" padding="10" unsigned="true" nullable="false" identity="true" comment="history_id"/>
+    <column xsi:type="int" name="attachment_id" padding="10" unsigned="true" nullable="false" identity="false" comment="attachment_id"/>
+    <column xsi:type="varchar" name="source" nullable="false" length="255" comment="source"/>
+    <column xsi:type="varchar" name="action" nullable="false" length="255" comment="action"/>
+    <column xsi:type="int" name="value" padding="10" unsigned="true" nullable="false" identity="false" comment="value"/>
+    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="created_at"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="history_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_99A7BE408C7C0D0F2DF26CEE013BD573" table="mst_attachment_history" column="attachment_id" referenceTable="mst_attachment" referenceColumn="attachment_id" onDelete="CASCADE"/>
+  </table>
+</schema>

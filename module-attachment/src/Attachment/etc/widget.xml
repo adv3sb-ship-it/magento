@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="attachments" class="Mirasvit\Attachment\Block\Attachment\AttachmentsWidget">
+        <label translate="true">Attachments</label>
+        <description translate="true">List of Attachments</description>
+        <parameters>
+            <parameter name="title" xsi:type="text" required="true" visible="true" sort_order="10">
+                <label translate="true">Title</label>
+            </parameter>
+            <parameter name="attachment_ids" xsi:type="block" visible="true" required="true" sort_order="20">
+                <label translate="true">Attachment Ids</label>
+                <block class="Mirasvit\Attachment\Block\Adminhtml\Widget\Chooser">
+                    <data>
+                        <item name="use_massaction" xsi:type="boolean">true</item>
+                        <item name="button" xsi:type="array">
+                            <item name="open" xsi:type="string" translate="true">Select Attachments...</item>
+                        </item>
+                    </data>
+                </block>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>
