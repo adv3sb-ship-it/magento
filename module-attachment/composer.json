@@ -1,0 +1,21 @@
+{
+    "name": "mirasvit/module-attachment",
+    "description": "Product Attachments",
+    "require": {
+        "magento/framework": "102.0.*|103.0.*",
+        "mirasvit/module-core": "^1.2|dev-master"
+    },
+    "type": "magento2-module",
+    "version": "1.1.12",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "src/Attachment/registration.php"
+        ],
+        "psr-4": {
+            "Mirasvit\\Attachment\\": "src/Attachment"
+        }
+    }
+}
