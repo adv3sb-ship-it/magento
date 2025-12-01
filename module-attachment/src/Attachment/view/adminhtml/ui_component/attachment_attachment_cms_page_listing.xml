@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">attachment_attachment_cms_page_listing.attachment_attachment_cms_page_listing_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>columns</spinner>
+        <deps>
+            <dep>attachment_attachment_cms_page_listing.attachment_attachment_cms_page_listing_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="attachment_attachment_cms_page_listing_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="cacheRequests" xsi:type="boolean">false</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <aclResource>Magento_Cms::page</aclResource>
+        <dataProvider class="Mirasvit\Attachment\Ui\Attachment\Form\LinkDataProvider\CmsPageDataProvider" name="attachment_attachment_cms_page_listing_data_source">
+            <settings>
+                <requestFieldName>id</requestFieldName>
+                <primaryFieldName>page_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="params" xsi:type="array">
+                        <item name="filters_modifier" xsi:type="array"/>
+                    </item>
+                    <item name="observers" xsi:type="array">
+                        <item name="column" xsi:type="string">column</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <statefull>
+                    <property name="applied" xsi:type="boolean">false</property>
+                </statefull>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+
+    <columns name="columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">relatedCmsPageGrid</item>
+                    <item name="target" xsi:type="string">selectCmsPage</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>page_id</indexField>
+                <preserveSelectionsOnFilter>true</preserveSelectionsOnFilter>
+            </settings>
+        </selectionsColumn>
+        <column name="page_id" sortOrder="10">
+            <settings>
+                <addField>true</addField>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+        <column name="title" sortOrder="30">
+            <settings>
+                <addField>true</addField>
+                <filter>text</filter>
+                <label translate="true">Title</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

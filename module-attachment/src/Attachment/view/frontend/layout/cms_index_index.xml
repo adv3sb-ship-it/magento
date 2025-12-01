@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="page.bottom.container">
+            <block name="mst_attachment" class="Magento\Framework\View\Element\Template" template="Mirasvit_Attachment::list_block.phtml">
+                <block name="list" class="Mirasvit\Attachment\Block\AttachmentList" template="Mirasvit_Attachment::list.phtml" after="-"/>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

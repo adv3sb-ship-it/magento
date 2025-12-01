@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <fieldset name="link_attachment" sortOrder="801">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>false</opened>
+            <label translate="true">Attachments</label>
+            <additionalClasses>
+                <class name="mst_attachment__linked-attachment">true</class>
+            </additionalClasses>
+        </settings>
+
+        <fieldset name="attachment_attachment" sortOrder="10">
+            <settings>
+                <collapsible>false</collapsible>
+                <label translate="true"></label>
+                <additionalClasses>
+                    <class name="admin__fieldset-section">true</class>
+                </additionalClasses>
+            </settings>
+
+            <container name="button_set" component="Magento_Ui/js/form/components/group" template="ui/form/components/complex" sortOrder="10">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="formElement" xsi:type="string">container</item>
+                        <item name="label" xsi:type="string"/>
+                        <item name="dataScope" xsi:type="string"/>
+                        <item name="breakLine" xsi:type="boolean">false</item>
+                    </item>
+                </argument>
+                <container name="button_attachment_attachment" component="Magento_Ui/js/form/components/button">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="formElement" xsi:type="string">container</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">product_form.product_form.link_attachment.attachment_attachment.modal</item>
+                                    <item name="actionName" xsi:type="string">toggleModal</item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">product_form.product_form.link_attachment.attachment_attachment.modal.attachment_attachment_grid</item>
+                                    <item name="actionName" xsi:type="string">render</item>
+                                </item>
+                            </item>
+                            <item name="title" xsi:type="string" translate="true">Assign Attacment</item>
+                            <item name="dataScope" xsi:type="string"/>
+                        </item>
+                    </argument>
+                </container>
+
+                <container name="button_new_attachmentattachment_attachment" component="Magento_Ui/js/form/components/button">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="formElement" xsi:type="string">container</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">product_form.product_form.link_attachment.attachment_attachment.new_attachment_modal</item>
+                                    <item name="actionName" xsi:type="string">toggleModal</item>
+                                </item>
+                                <item name="1" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">product_form.product_form.link_attachment.attachment_attachment.new_attachment_modal.create_attachment</item>
+                                    <item name="actionName" xsi:type="string">render</item>
+                                </item>
+                                <item name="2" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">product_form.product_form.link_attachment.attachment_attachment.new_attachment_modal.create_attachment</item>
+                                    <item name="actionName" xsi:type="string">resetForm</item>
+                                </item>
+                            </item>
+                            <item name="title" xsi:type="string" translate="true">Add New Attachment</item>
+                            <item name="dataScope" xsi:type="string"/>
+                        </item>
+                    </argument>
+                </container>
+            </container>
+
+            <modal name="modal">
+                <settings>
+                    <options>
+                        <option name="title" xsi:type="string" translate="true">Assign Attacment</option>
+                        <option name="buttons" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="text" xsi:type="string">Cancel</item>
+                                <item name="class" xsi:type="string">action-secondary</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="targetName" xsi:type="string">${ $.name }</item>
+                                        <item name="actionName" xsi:type="string">closeModal</item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="text" xsi:type="string" translate="true">Add Selected Attachments</item>
+                                <item name="class" xsi:type="string">action-primary</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="targetName" xsi:type="string">index = attachment_attachment_grid</item>
+                                        <item name="actionName" xsi:type="string">save</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="targetName" xsi:type="string">${ $.name }</item>
+                                        <item name="actionName" xsi:type="string">closeModal</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </option>
+                    </options>
+                </settings>
+                <insertListing name="attachment_attachment_grid">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="cssclass" xsi:type="string">noclass</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <dataScope>attachment_attachment_grid</dataScope>
+                        <ns>attachment_attachment_grid</ns>
+                        <externalProvider>attachment_attachment_grid.attachment_attachment_grid_data_source</externalProvider>
+                        <selectionsProvider>attachment_attachment_grid.attachment_attachment_grid.columns.ids</selectionsProvider>
+                        <dataLinks>
+                            <imports>false</imports>
+                            <exports>true</exports>
+                        </dataLinks>
+                        <behaviourType>simple</behaviourType>
+                        <externalFilterMode>true</externalFilterMode>
+                    </settings>
+                </insertListing>
+            </modal>
+
+            <modal name="new_attachment_modal">
+                <settings>
+                    <title translate="true">Create Attachment</title>
+                    <imports>
+                        <link name="state">!index=create_attachment:responseStatus</link>
+                    </imports>
+                </settings>
+                <insertForm name="create_attachment">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="addressModalProvider" xsi:type="string">${ $.parentName }</item>
+                        </item>
+                    </argument>
+                    <settings>
+                        <formSubmitType>ajax</formSubmitType>
+                        <renderUrl path="mui/index/render_handle">
+                            <param name="handle">mst_attachment_attachment_create</param>
+                            <param name="buttons">1</param>
+                        </renderUrl>
+                        <loading>false</loading>
+                        <toolbarContainer>${ $.parentName }</toolbarContainer>
+                        <externalProvider>attachment_attachment_form_data_source</externalProvider>
+                        <ns>attachment_attachment_form</ns>
+                    </settings>
+                </insertForm>
+            </modal>
+
+            <dynamicRows name="attachment" component="Magento_Ui/js/dynamic-rows/dynamic-rows-grid" template="ui/dynamic-rows/templates/grid">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="deleteButtonLabel" xsi:type="string">Remove</item>
+                        <item name="dataProvider" xsi:type="string">attachment_attachment_grid</item>
+                        <item name="map" xsi:type="array">
+                            <item name="attachment_id" xsi:type="string">attachment_id</item>
+                            <item name="icon" xsi:type="string">icon_src</item>
+                            <item name="label" xsi:type="string">label</item>
+                            <item name="type" xsi:type="string">attachment_id</item>
+                            <item name="source_name" xsi:type="string">source_name</item>
+                        </item>
+                        <item name="identificationDRProperty" xsi:type="string">attachment_id</item>
+                    </item>
+                </argument>
+                <settings>
+                    <additionalClasses>
+                        <class name="admin__field-wide">true</class>
+                    </additionalClasses>
+                    <componentType>dynamicRows</componentType>
+                    <addButton>false</addButton>
+                    <deleteProperty>true</deleteProperty>
+                    <recordTemplate>record</recordTemplate>
+                    <identificationProperty>attachment_id</identificationProperty>
+                    <links>
+                        <link name="insertData">${ $.provider }:${ $.dataProvider }</link>
+                    </links>
+                    <dndConfig>
+                        <param name="enabled" xsi:type="boolean">false</param>
+                    </dndConfig>
+                    <dataScope>data.links</dataScope>
+                    <dndConfig>
+                        <param name="enabled" xsi:type="boolean">true</param>
+                    </dndConfig>
+                </settings>
+                <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="isTemplate" xsi:type="boolean">true</item>
+                            <item name="is_collection" xsi:type="boolean">true</item>
+                            <item name="componentType" xsi:type="string">container</item>
+                        </item>
+                    </argument>
+                    <field name="attachment_id" formElement="input"  component="Magento_Ui/js/form/element/text" template="ui/dynamic-rows/cells/text" sortOrder="10">
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>attachment_id</dataScope>
+                            <label translate="true">ID</label>
+                        </settings>
+                    </field>
+                    <field name="icon" formElement="input"  template="ui/dynamic-rows/cells/thumbnail" sortOrder="20">
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>icon</dataScope>
+                            <label translate="true">Icon</label>
+                        </settings>
+                    </field>
+                    <field name="label" formElement="input"  component="Magento_Ui/js/form/element/text" template="ui/dynamic-rows/cells/text" sortOrder="30">
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>label</dataScope>
+                            <label translate="true">Label</label>
+                        </settings>
+                    </field>
+                    <field name="type" formElement="input"  component="Magento_Ui/js/form/element/text" template="ui/dynamic-rows/cells/text" sortOrder="40">
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>type</dataScope>
+                            <label translate="true">Type</label>
+                        </settings>
+                    </field>
+                    <actionDelete name="type" sortOrder="50">
+                        <settings>
+                            <dataType>text</dataType>
+                            <dataScope>type</dataScope>
+                            <label translate="true">Actions</label>
+                        </settings>
+                    </actionDelete>
+                    <field name="position" formElement="input" sortOrder="30">
+                        <settings>
+                            <elementTmpl>ui/form/element/input</elementTmpl>
+                            <dataType>number</dataType>
+                            <dataScope>position</dataScope>
+                            <label translate="true">Position</label>
+                            <visible>false</visible>
+                        </settings>
+                    </field>
+                </container>
+            </dynamicRows>
+
+        </fieldset>
+
+    </fieldset>
+</form>

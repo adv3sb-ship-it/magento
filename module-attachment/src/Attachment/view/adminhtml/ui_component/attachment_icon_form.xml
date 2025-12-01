@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">attachment_icon_form.attachment_icon_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">General Information</item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Mirasvit\Attachment\Ui\Icon\Form\Control\BackButton"/>
+            <button name="delete" class="Mirasvit\Attachment\Ui\Icon\Form\Control\DeleteButton"/>
+            <button name="save" class="Mirasvit\Attachment\Ui\Icon\Form\Control\SaveButton"/>
+            <button name="save_and_continue" class="Mirasvit\Attachment\Ui\Icon\Form\Control\SaveAndContinueButton"/>
+        </buttons>
+        <namespace>attachment_icon_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>attachment_icon_form.attachment_icon_form_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="attachment_icon_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="*/*/save"/>
+        </settings>
+        <dataProvider class="Mirasvit\Attachment\Ui\Icon\Form\DataProvider" name="attachment_icon_form_data_source">
+            <settings>
+                <requestFieldName>icon_id</requestFieldName>
+                <primaryFieldName>icon_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <fieldset name="general">
+        <settings>
+            <collapsible>true</collapsible>
+            <opened>true</opened>
+            <label translate="true">General Information</label>
+        </settings>
+
+        <field name="icon_id" sortOrder="10" formElement="input">
+            <settings>
+                <dataType>text</dataType>
+                <visible>false</visible>
+                <label/>
+                <dataScope>icon_id</dataScope>
+            </settings>
+        </field>
+        <field name="is_active"  sortOrder="20" formElement="checkbox">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Is Active</label>
+                <dataScope>is_active</dataScope>
+                <dataType>boolean</dataType>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="label" sortOrder="30" formElement="input">
+            <settings>
+                <label translate="true">Label</label>
+                <dataScope>label</dataScope>
+                <dataType>text</dataType>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                    <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+        <field name="icon" sortOrder="60" formElement="fileUploader">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="string">mst_attachment/icon/upload</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <label translate="true">Icon</label>
+                <elementTmpl>ui/form/element/uploader/uploader</elementTmpl>
+                <notice translate="true">Allowed file types: jpeg, gif, png.</notice>
+                <validation>
+                    <rule name="required-entry" xsi:type="boolean">true</rule>
+                </validation>
+            </settings>
+        </field>
+
+        <dynamicRows name="types">
+            <settings>
+                <label translate="true">Types</label>
+                <addButtonLabel translate="true">Add File Type</addButtonLabel>
+                <componentType>dynamicRows</componentType>
+                <deleteValue>false</deleteValue>
+                <dndConfig>
+                    <param name="enabled" xsi:type="boolean">false</param>
+                </dndConfig>
+            </settings>
+            <container name="record" component="Magento_Ui/js/dynamic-rows/record">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="isTemplate" xsi:type="boolean">true</item>
+                        <item name="is_collection" xsi:type="boolean">true</item>
+                        <item name="componentType" xsi:type="string">container</item>
+                    </item>
+                </argument>
+
+                <field name="type" formElement="input">
+                    <settings>
+                        <label>Type</label>
+                        <dataScope>type</dataScope>
+                        <dataType>text</dataType>
+                        <placeholder>file extension. example: pdf, docx</placeholder>
+                        <validation>
+                            <rule name="required-entry" xsi:type="boolean">true</rule>
+                            <rule name="validate-no-html-tags" xsi:type="boolean">true</rule>
+                        </validation>
+                    </settings>
+                </field>
+
+                <actionDelete>
+                    <argument name="data" xsi:type="array">
+                        <item name="config" xsi:type="array">
+                            <item name="componentType" xsi:type="string">actionDelete</item>
+                            <item name="dataType" xsi:type="string">text</item>
+                            <item name="label" xsi:type="string">Actions</item>
+                            <item name="additionalClasses" xsi:type="string">data-grid-actions-cell</item>
+                            <item name="template" xsi:type="string">Magento_Backend/dynamic-rows/cells/action-delete
+                            </item>
+                        </item>
+                    </argument>
+                </actionDelete>
+            </container>
+        </dynamicRows>
+    </fieldset>
+</form>

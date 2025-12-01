@@ -1,0 +1,26 @@
+<?php
+/** @var \Mirasvit\Attachment\Block\AttachmentList $block */
+/** @var \Magento\Framework\Escaper $escaper */
+$list = $block->getAttachmentList();
+if (count($list) === 0) {
+    return null;
+}
+?>
+<ul class="mst-attachment__list">
+    <?php foreach ($list as $attachment): ?>
+        <li>
+            <a href="<?= $block->escapeUrl($block->getClickHandlerUrl($attachment)) ?>" target="_blank">
+                <i>
+                    <img src="<?= $block->escapeUrl($block->getIconUrl($attachment)) ?>"
+                         alt="<?= $block->escapeHtmlAttr($block->getLabel($attachment)) ?>">
+                </i>
+
+                <?= $block->escapeHtml($block->getLabel($attachment)) ?>
+            </a>
+
+            <?php if ($block->getSize($attachment)): ?>
+                <small>(<?= $block->escapeHtml($block->getSize($attachment)) ?>)</small>
+            <?php endif ?>
+        </li>
+    <?php endforeach ?>
+</ul>

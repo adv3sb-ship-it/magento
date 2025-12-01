@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">attachment_attachment_grid.attachment_attachment_grid_data_source</item>
+        </item>
+    </argument>
+    <settings>
+        <spinner>columns</spinner>
+        <deps>
+            <dep>attachment_attachment_grid.attachment_attachment_grid_data_source</dep>
+        </deps>
+    </settings>
+
+    <dataSource name="attachment_attachment_grid_data_source" component="Magento_Ui/js/grid/provider">
+        <settings>
+            <storageConfig>
+                <param name="cacheRequests" xsi:type="boolean">false</param>
+            </storageConfig>
+            <updateUrl path="mui/index/render"/>
+        </settings>
+        <dataProvider class="Mirasvit\Attachment\Ui\Attachment\Listing\DataProvider" name="attachment_attachment_grid_data_source">
+            <settings>
+                <requestFieldName>attachment_id</requestFieldName>
+                <primaryFieldName>attachment_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+
+    <listingToolbar name="listing_top">
+        <filters name="listing_filters">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="params" xsi:type="array">
+                        <item name="filters_modifier" xsi:type="array"/>
+                    </item>
+                    <item name="observers" xsi:type="array">
+                        <item name="column" xsi:type="string">column</item>
+                    </item>
+                </item>
+            </argument>
+            <settings>
+                <statefull>
+                    <property name="applied" xsi:type="boolean">false</property>
+                </statefull>
+            </settings>
+        </filters>
+        <paging name="listing_paging"/>
+    </listingToolbar>
+
+    <columns name="columns">
+        <settings>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">relatedAttachmentGrid</item>
+                    <item name="target" xsi:type="string">selectAttachment</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+
+        <selectionsColumn name="ids" sortOrder="0">
+            <settings>
+                <indexField>attachment_id</indexField>
+                <preserveSelectionsOnFilter>true</preserveSelectionsOnFilter>
+            </settings>
+        </selectionsColumn>
+
+        <column name="attachment_id" sortOrder="10">
+            <settings>
+                <filter>textRange</filter>
+                <label translate="true">ID</label>
+                <sorting>asc</sorting>
+            </settings>
+        </column>
+
+        <column name="is_active" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <label translate="true">Is Active</label>
+                <options class="Magento\Config\Model\Config\Source\Yesno"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+
+        <column name="source_name">
+            <settings>
+                <label translate="true">Name</label>
+                <filter>text</filter>
+            </settings>
+        </column>
+
+        <column name="icon" component="Magento_Ui/js/grid/columns/thumbnail" class="Mirasvit\Attachment\Ui\Attachment\Listing\Column\Thumbnail">
+            <settings>
+                <label translate="true">Icon</label>
+                <hasPreview>true</hasPreview>
+                <sortable>false</sortable>
+            </settings>
+        </column>
+
+        <column name="type" component="Magento_Ui/js/grid/columns/select">
+            <settings>
+                <label translate="true">Type</label>
+                <options class="Mirasvit\Attachment\Ui\Attachment\Source\TypeSource"/>
+                <filter>select</filter>
+                <dataType>select</dataType>
+            </settings>
+        </column>
+
+        <column name="label" sortOrder="30">
+            <settings>
+                <filter>text</filter>
+                <label translate="true">Label</label>
+            </settings>
+        </column>
+    </columns>
+</listing>

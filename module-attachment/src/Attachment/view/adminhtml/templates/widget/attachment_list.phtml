@@ -1,0 +1,20 @@
+<?php
+/** @var \Mirasvit\Attachment\Block\Adminhtml\Widget\AttachmentGrid $block */
+/** @var \Magento\Framework\Escaper $escaper */
+?>
+
+<div id="manage-options-panel">
+    <table class="admin__control-table">
+        <thead>
+        <tr id="attribute-options-table">
+            <th class="col-draggable"></th>
+            <th><?= $block->escapeHtml(__('ID')) ?></th>
+            <th><?= $block->escapeHtml(__('File Name')) ?></th>
+            <th><?= $block->escapeHtml(__('File Label')) ?></th>
+            <th class="col-delete"><?= $block->escapeHtml(__('Remove')) ?></th>
+        </tr>
+        </thead>
+        <tbody data-role="options-container" class="ignore-validate"></tbody>
+    </table>
+    <input type="hidden" id="option-count-check" value=""/>
+</div>
