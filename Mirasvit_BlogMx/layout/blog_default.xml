@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <attribute name="class" value="blog"/>
+
+        <referenceBlock name="wishlist_sidebar" remove="true"/>
+        <referenceBlock name="wishlist" remove="true"/>
+        <referenceBlock name="catalog.compare.sidebar" remove="true"/>
+
+        <referenceContainer name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="blog-page"/>
+        <referenceContainer name="div.sidebar.main" htmlTag="div" htmlClass="aside-content blog-aside-content"/>
+        <referenceContainer name="main" htmlClass="container-with_aside flex">
+            <container name="blog.main.aside" htmlTag="aside">
+
+            </container>
+            <container name="blog.main.content" htmlTag="div" htmlClass="content-with_aside">
+
+            </container>
+        </referenceContainer>
+        <referenceContainer name="columns" htmlClass="container">
+            <container name="product.info.subscribe.wrapper" htmlTag="div" htmlClass="mt-60 callback" after="-">
+                <block class="Magento\Newsletter\Block\Subscribe" name="product.info.newsletter"
+                       template="Magento_Newsletter::subscribe-home.phtml">
+                </block>
+            </container>
+        </referenceContainer>
+        <move element="recently_viewed" destination="columns" before="product.info.subscribe.wrapper"/>
+        <move element="page.main.title" destination="columns" before="-"/>
+        <move element="div.sidebar.main" destination="blog.main.aside" before="-"/>
+
+        <move element="EJr1m92dU8Rv9TSKKCs3njYuLRQzRm1K" destination="blog.main.content" before="-"/>
+        <move element="bBkPHFEDz57hcQBTliCXXPFB1DnzC9df" destination="blog.main.content" after="EJr1m92dU8Rv9TSKKCs3njYuLRQzRm1K"/>
+
+        <move element="k2FOgmauI3NnISqaJqi1rGWXXEht5mfP" destination="blog.main.content" before="-"/>
+        <move element="WxywayZEsDyEDQcsfNNaLpYpvlRQGAeH" destination="blog.main.content" after="k2FOgmauI3NnISqaJqi1rGWXXEht5mfP"/>
+
+        <move element="xR4UbiiquktgVfTzmRUkpe0rRmKxhzic" destination="blog.main.content" before="-"/>
+        <move element="i4CCSbZIe68qzGrw0CpDH2dNWqGabtlq" destination="blog.main.content" after="xR4UbiiquktgVfTzmRUkpe0rRmKxhzic"/>
+
+        <move element="EPq7DZf75IWMgCMnVHIEjKlSx39zQLfS" destination="blog.main.content" before="-"/>
+        <move element="izDmEA50erPX5YhvXig189Z3RDWU0YqM" destination="blog.main.content" after="EPq7DZf75IWMgCMnVHIEjKlSx39zQLfS"/>
+
+        <move element="QtBHLXqsRZNGoBYALahXu1UAbfSdKJFT" destination="blog.main.content" before="-"/>
+        <move element="f5veuoRx0Gw17O6PcGLqwhDzOi9igD9G" destination="blog.main.content" after="QtBHLXqsRZNGoBYALahXu1UAbfSdKJFT"/>
+
+        <move element="PW4ckKuRAY1e2dy7DBRd45bIVt5gpSmX" destination="blog.main.content" before="-"/>
+        <move element="vphwpVNsy7l7fhMN1TaxhSPNYVJPi4by" destination="blog.main.content" after="PW4ckKuRAY1e2dy7DBRd45bIVt5gpSmX"/>
+
+        <move element="bt5Q6k6te3aVEIyVp8jL6Mr7RHezflb7" destination="blog.main.content" before="-"/>
+        <move element="Ki6HahfMEAQCmKBSq04cavGlAoozI6r5" destination="blog.main.content" after="bt5Q6k6te3aVEIyVp8jL6Mr7RHezflb7"/>
+
+        <move element="MT0PbOmgnkGufJQ3v9Vdt74y9D8HsKx7" destination="blog.main.content" before="-"/>
+        <move element="X4QyWNb1YQQR2DwiwLozNRRFDqmi7WIA" destination="blog.main.content" after="MT0PbOmgnkGufJQ3v9Vdt74y9D8HsKx7"/>
+
+        <move element="CqZzzvvIqIaEEI1brq1kIUjJAiSqO2ZO" destination="blog.main.content" before="-"/>
+        <move element="OHmP8cvZm9m8GJ9eaUyQc9chMhYh5KaT" destination="blog.main.content" after="CqZzzvvIqIaEEI1brq1kIUjJAiSqO2ZO"/>
+
+        <move element="IsF1bGlv7ZJckytYUd0lKbKddy4quSEN" destination="blog.main.content" before="-"/>
+        <move element="GqD0yhhc88FQeY5ayCpLwuWuT2XhaYPB" destination="blog.main.content" after="IsF1bGlv7ZJckytYUd0lKbKddy4quSEN"/>
+    </body>
+</page>

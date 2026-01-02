@@ -1,0 +1,23 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Chunk\PostChunkRenderer $block */
+$post = $block->getPost();
+$postView = $block->getPostView();
+?>
+<div class="actions-slider-item">
+    <?php
+    if ($postView->getImageUrl($post)): ?>
+        <img class="lazyload"   data-src="<?= $postView->getImageUrl($post) ?>"
+             alt="<?= $escaper->escapeHtmlAttr($postView->getImageAlt($post)) ?>"/>
+    <?php elseif ($videoId = $post->getVideoId()): ?>
+        <img  class="lazyload"    data-src="https://img.youtube.com/vi/<?= $videoId ?>/maxresdefault.jpg"
+             alt="<?= $post->getName() ?>" title="<?= $post->getName() ?>"/>
+    <?php endif ?>
+    <div class="slider-item_cont">
+        <div class="row-info no_label">
+            <?php echo __('Posted:') ?> <?= $postView->i18nFormatDate($post->getCreatedAt()) ?>
+        </div>
+        <a href="<?= $postView->getUrl($post) ?>" class="name"><?= $post->getName() ?></a>
+        <a href="<?= $postView->getUrl($post) ?>" class="transparent"><?php echo __('Go to detail') ?></a>
+    </div>
+</div>

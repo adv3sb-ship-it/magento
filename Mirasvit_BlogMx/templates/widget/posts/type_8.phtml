@@ -1,0 +1,63 @@
+<?php
+/* TEMPLATE_NAME Sidebar posts */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Triniti\Main\Block\BlogMx\Widget\Posts $block */
+$postList = $block->getPostList();
+if (!$postList) {
+    return null;
+}
+$postViewTree = [];
+$postView = $block->getPostView();
+foreach ($postList as $post) {
+    $firstCategoryId = $post->getFirstCategoryId();
+    if ($firstCategoryId) {
+        if (!isset($postViewTree[$firstCategoryId])) {
+            $postMainCategory = $postView->getMainCategory($post);
+            $postViewTree[$firstCategoryId]['TITLE'] = $postMainCategory->getName();
+        }
+        $postViewTree[$firstCategoryId]['ITEMS'][] = $post;
+    }
+}
+?>
+<div class="mt-60 actions-block-slider tab-section">
+    <div class="slider-head-left">
+        <span class="title"><?php echo __('Blog') ?></span>
+        <div class="tab-row">
+            <div class="tab-block">
+                <a href="javascript:void(0);" class="b-nav-tab active"> <?= __('All') ?> </a>
+                <?php foreach ($postViewTree as $categoryList) { ?>
+                    <a href="javascript:void(0);" class="b-nav-tab"><?= $categoryList['TITLE'] ?></a>
+                <?php } ?>
+            </div>
+        </div>
+    </div>
+    <div class="b-tab">
+        <div class="actions_slider">
+            <?php
+            /**
+             * @var integer $i
+             * @var \Mirasvit\BlogMx\Model\Post $post
+             */
+            foreach ($postList as $i => $post): ?>
+                <?= $postView->render('chunks/post_6.phtml', ['post' => $post]) ?>
+            <?php endforeach ?>
+        </div>
+    </div>
+    <?php foreach ($postViewTree as $categoryList) { ?>
+        <div class="b-tab">
+            <div class="actions_slider">
+                <?php
+                /**
+                 * @var integer $i
+                 * @var \Mirasvit\BlogMx\Model\Post $post
+                 */
+                foreach ($categoryList['ITEMS'] as $i => $post): ?>
+                    <?= $postView->render('chunks/post_6.phtml', ['post' => $post]) ?>
+                <?php endforeach ?>
+            </div>
+        </div>
+    <?php } ?>
+    <div class="block-slider-head ">
+        <a href="<?=$this->getBlogBaseUrl()?>"><?= __('Go to blog') ?></a>
+    </div>
+</div>

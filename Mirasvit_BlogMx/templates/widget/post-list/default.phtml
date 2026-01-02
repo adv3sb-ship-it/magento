@@ -1,0 +1,31 @@
+<?php
+declare(strict_types=1);
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Widget\Post\PostList $block */
+
+$postList = $block->getPostList();
+
+$postView   = $block->getPostView();
+$authorView = $block->getAuthorView();
+?>
+<div id="blog_categories" class="blog__categories-mobile search-row">
+    <div class="category__drop-wrapper">
+        <div class="current__category">
+        <?= __('Category') ?>:&nbsp;<span><?= __('All') ?></span>
+        </div>
+        <div class="category__drop-list" style="max-height: 0">
+        </div>
+    </div>
+</div>
+<?php if ($postList): ?>
+    <div class="blog-card-row">
+        <?php foreach ($postList as $post): ?>
+            <?= $postView->render('chunks/post_5.phtml', ['post' => $post]) ?>
+        <?php endforeach ?>
+    </div>
+    <?= $block->getToolbarHtml() ?>
+<?php else: ?>
+    <div class="message notice">
+        <div><?= __('There are no posts available for this category.') ?></div>
+    </div>
+<?php endif ?>

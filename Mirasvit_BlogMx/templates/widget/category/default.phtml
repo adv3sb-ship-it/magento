@@ -1,0 +1,33 @@
+<?php
+declare(strict_types=1);
+/** @var \Mirasvit\BlogMx\Block\Widget\Common\CategoryList $block */
+
+$categoryView = $block->getCategoryView();
+$categoryTree = $block->getTree();
+
+if (!count($categoryTree)) {
+    return '';
+}
+?>
+<div class="filter_item">
+    <?php if ($block->getTitle()): ?>
+        <div class="filter_item-head">
+            <span class="name"><?= __($block->getTitle()) ?></span>
+        </div>
+    <?php endif ?>
+
+    <div class="filter_item-body">
+        <?php foreach ($categoryTree as $category): ?>
+            <div class="filter_item-row">
+                <a <?php if("https://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]"==$categoryView->getUrl($category)):?>class="active"<?php endif ?> href="<?= $categoryView->getUrl($category) ?>">
+                    <label>
+                         <span class="name">
+                        <?= $category->getName() ?>
+<!--                        <span class="number">(--><?php //= $category->getChildrenCount()?><!--)</span>-->
+                    </span>
+                    </label>
+                </a>
+            </div>
+        <?php endforeach ?>
+    </div>
+</div>

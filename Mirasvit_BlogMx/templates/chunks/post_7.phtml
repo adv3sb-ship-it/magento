@@ -1,0 +1,26 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Chunk\PostChunkRenderer $block */
+/**
+ * @var \Mirasvit\BlogMx\Model\Post $post
+ */
+$post = $block->getPost();
+$postView = $block->getPostView();
+$videoId = $post->getVideoId();
+if ($videoId) {
+    ?>
+    <div class="blog-card">
+        <div class="blog-card_wrapper">
+            <div class="blog-card_video-youtube" data-youtube="<?= $videoId ?>">
+                <img  class="lazyload"   data-src="https://img.youtube.com/vi/<?= $videoId ?>/maxresdefault.jpg"
+                     alt="<?= $post->getName() ?>" title="<?= $post->getName() ?>"/>
+                <button class="video_play">
+                    <img  src="<?= $block->getViewFileUrl('images/triniti-img-icon/videoBtn.svg'); ?>"
+                         alt="img">
+                </button>
+            </div>
+        </div>
+        <a href="<?= $postView->getUrl($post) ?>" class="name"><?= $post->getName() ?></a>
+    </div>
+    <?php
+}

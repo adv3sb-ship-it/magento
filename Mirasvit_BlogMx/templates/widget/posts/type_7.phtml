@@ -1,0 +1,54 @@
+<?php
+/* TEMPLATE_NAME posts grid */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Widget\Posts $block */
+try {
+    $postList = $block->getPostList();
+} catch (\Exception $e) {
+    // Якщо є помилка в SQL — не рендеримо віджет узагалі
+    $postList = [];
+    // Можна логувати, якщо потрібно:
+    // $logger = \Magento\Framework\App\ObjectManager::getInstance()->get(\Psr\Log\LoggerInterface::class);
+    // $logger->error('BlogMx PostList error: ' . $e->getMessage());
+}
+if (empty($postList)) {
+    return null;
+}
+$postView = $block->getPostView();
+?>
+
+<?php /* if ($block->getTitle()): ?>
+    <h3 class="blog__posts__type-7__title bmx:card-title"><?= $block->getTitle() ?></h3>
+<?php endif */ ?>
+<div class="blog_related_posts_block mt-60">
+<?php
+use Magento\Framework\App\ObjectManager;
+
+$title = trim($block->getTitle());
+
+// отримуємо поточний store language
+$localeResolver = ObjectManager::getInstance()->get(\Magento\Framework\Locale\ResolverInterface::class);
+$locale = $localeResolver->getLocale(); // напр. uk_UA, ru_RU
+
+$translations = [
+    'Популярні пости' => [
+        'uk_UA' => 'Популярні статті в блозі',
+        'ru_RU' => 'Популярные статьи в блоге',
+    ],
+    'Читайте також' => [
+        'uk_UA' => 'Читайте також',
+        'ru_RU' => 'Читайте также',
+    ],
+];
+
+$translatedTitle = $translations[$title][$locale] ?? $title;
+?>
+
+<span class="title"><?= $escaper->escapeHtml($translatedTitle) ?></span>
+
+    <div class="bmx:grid bmx:lg:grid-cols-2 bmx:gap-6">
+        <?php foreach ($postList as $post): ?>
+            <?= $postView->render('chunks/post_1.phtml', ['post' => $post]) ?>
+        <?php endforeach ?>
+    </div>
+</div>

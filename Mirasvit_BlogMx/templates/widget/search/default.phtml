@@ -1,0 +1,23 @@
+<?php
+declare(strict_types=1);
+
+/** @var \Mirasvit\BlogMx\Block\Widget\Common\SearchBox $block */
+?>
+
+<div class="search-row">
+    <div class="flex">
+        <form method="get" action="<?= $block->getSearchUrl() ?>">
+            <div class="input-row">
+                <button class="search-submit" type="button">
+                    <img loading="lazy"
+                         src="<?= $block->getViewFileUrl('images/triniti-img-icon/search.svg'); ?>"
+                         alt="img">
+                </button>
+                <input name="q" required="required"
+                       value="<?= $block->escapeHtml($block->getRequest()->getParam('q')) ?>" type="search"
+                       placeholder="<?= __('Search...') ?>">
+            </div>
+            <button class="button-all" type="submit"><?= __('Search Button') ?></button>
+        </form>
+    </div>
+</div>

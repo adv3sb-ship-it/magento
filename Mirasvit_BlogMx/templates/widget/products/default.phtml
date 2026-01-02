@@ -1,0 +1,158 @@
+<?php
+declare(strict_types=1);
+//@codingStandardsIgnoreFile
+/** @var \Mirasvit\BlogMx\Block\Widget\Post\RelatedProducts $block
+ * @var \Magento\Framework\Escaper $escaper
+ * */
+use Magento\Framework\App\Action\Action;
+
+if (!$block->getCurrentPost()) {
+   echo '</div>';
+    return;
+}
+
+$collection = $block->getRelatedProducts();
+
+if (!count($collection)) {
+    echo '</div>';
+    return;
+}
+/** @var \Magento\Catalog\Helper\Output $_helper */
+$_helper = $this->helper('Magento\Catalog\Helper\Output');
+$productLabelHelper = $this->helper('Sparsh\ProductLabel\Helper\ProductLabelHelper');
+$custom_helper = $this->helper('Triniti\Main\Helper\Attributes\Data');
+$cartHelper = $this->helper('Magento\Checkout\Helper\Cart');
+$templateType = \Magento\Catalog\Block\Product\ReviewRendererInterface::SHORT_VIEW;
+?>
+<div class="catalog-body flex">
+    <?php if ($block->getTitle()): ?>
+        <span class="title"><?= __('Blog product list') ?></span>
+    <?php endif ?>
+
+    <?php foreach ($collection as $product): ?>
+        <?php
+            if ($product->getData('archive') || $product->getVisibility() != \Magento\Catalog\Model\Product\Visibility::VISIBILITY_BOTH) {
+                continue;
+            }
+        ?>
+        <div class="product-card">
+            <div class="product-card_img-block">
+                <a class="product-card_img" href="<?= $block->getProductUrl($product) ?>">
+                    <?= $block->getImage($product, 'related_products_list')->toHtml() ?>
+                </a>
+                <?= $custom_helper->getLabelProduct($product) ?>
+                <div class="label-button" data-role="add-to-links">
+                    <?php if ($this->helper('Magento\Wishlist\Helper\Data')->isAllow()): ?>
+                        <button type="button"
+                                data-post='<?php /* @escapeNotVerified */
+                                echo $block->getAddToWishlistParams($product); ?>'
+                                class="action towishlist" data-action="add-to-wishlist"
+                                title="<?php /* @escapeNotVerified */
+                                echo __('Add to Wish List') ?>">
+                            <img src="<?= $block->getViewFileUrl('images/triniti-img-icon/favorites.svg'); ?>"
+                                 alt="img">
+                        </button>
+                    <?php endif; ?>
+                    <?php if ($block->getAddToCompareUrl()): ?>
+                        <?php $compareHelper = $this->helper('Magento\Catalog\Helper\Product\Compare'); ?>
+                        <button type="button" class="action tocompare"
+                                data-post='<?php /* @escapeNotVerified */
+                                echo $compareHelper->getPostDataParams($product); ?>'
+                                data-id="<?= $product->getId() ?>"
+                                title="<?php /* @escapeNotVerified */
+                                echo __('Add to Compare') ?>">
+                            <img src="<?= $block->getViewFileUrl('images/triniti-img-icon/compare.svg'); ?>"
+                                 alt="img">
+                        </button>
+                    <?php endif; ?>
+                </div>
+                <?php
+                $productLabelImageList = $productLabelHelper->getProductLabelImageList($product);
+                if (!empty($productLabelImageList)) { ?>
+                    <div class="label-info_icon">
+                        <?php
+                        $productMediaUrl = $productLabelHelper->getProductMediaUrl();
+                        foreach ($productLabelImageList as $productLabelImage) { ?>
+                            <div class="label-info_icon-item">
+                                <img
+                                    src="<?php echo $productMediaUrl . $productLabelImage; ?>"
+                                    alt="img">
+                            </div>
+                        <?php }
+                        ?>
+                    </div>
+                    <?php
+                } ?>
+            </div>
+            <div class="top-card-row">
+                <div class="article-product">
+                            <span> <span
+                                    class="code-text"><?= __('Product code:') ?></span><?= $product->getData('sku') ?></span>
+                </div>
+                <?= $block->getReviewsSummaryHtml($product, $templateType) ?>
+            </div>
+            <a class="product-card_name" href="<?= $block->getProductUrl($product) ?>">
+                <?= $block->escapeHtml($product->getName()) ?>
+            </a>
+            <div class="product-card_info">
+                <?php if ($product->isAvailable()): ?>
+                    <div class="availability">
+                        <span class="check-mark">&#10003;</span>
+                        <span class="check-mark-text"><?= $escaper->escapeHtml(__('In stock')) ?></span>
+                    </div>
+                <?php else: ?>
+                    <div class="availability expected">
+                        <span class="check-mark"></span>
+                        <span class="check-mark-text"><?= $escaper->escapeHtml(__('Out of stock')) ?></span>
+                    </div>
+                <?php endif; ?>
+
+                <div class="product-card_info-bottom">
+                    <div class="product-card_price">
+                        <?= /* @noEscape */
+                        $block->getProductPrice($product) ?>
+                    </div>
+                    <?php if ($product->isSaleable()): ?>
+                        <?php $postParams = $block->getAddToCartPostParams($product); ?>
+                        <form data-role="tocart-form" action="<?php /* @escapeNotVerified */
+                        echo $postParams['action']; ?>" method="post">
+                            <input type="hidden" name="product" value="<?php /* @escapeNotVerified */
+                            echo $postParams['data']['product']; ?>">
+                            <input type="hidden" name="<?php /* @escapeNotVerified */
+                            echo Action::PARAM_NAME_URL_ENCODED; ?>" value="<?php /* @escapeNotVerified */
+                            echo $postParams['data'][Action::PARAM_NAME_URL_ENCODED]; ?>">
+                            <input type="hidden" name="form_key" value="<?php echo $block->_getFormKey(); ?>"/>
+                            <button type="submit"
+                                    data-id="<?= $product->getId() ?>"
+                                    title="<?php echo $block->escapeHtml(__('Add to Cart')); ?>"
+                                    class="action tocart primary product-card_addCart js_add_to_cart">
+                                <img src="<?= $block->getViewFileUrl('images/triniti-img-icon/cart.svg'); ?>"
+                                     alt="img">
+                            </button>
+                        </form>
+                    <?php endif; ?>
+                </div>
+                <?php if ($product->isSaleable()): ?>
+                    <div class="bonus-row hidden">
+                        <span></span>
+                    </div>
+                <?php endif; ?>
+                <?php if ($_additional = $custom_helper->getAdditionalData($product)) : ?>
+                    <div class="hover-block">
+                        <div class="hover-block-cont">
+                            <p>
+                                <?php foreach ($_additional as $_data) : ?>
+                                    <?= $block->escapeHtml($_data['label']) ?>: <?= /* @noEscape */
+                                    $_helper->productAttribute($product, $_data['value'], $_data['code']) ?>
+                                <?php endforeach; ?>
+                            </p>
+                        </div>
+                    </div>
+                <?php endif; ?>
+            </div>
+        </div>
+
+    <?php endforeach ?>
+</div>
+
+</div>

@@ -1,0 +1,21 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Chunk\PostChunkRenderer $block */
+$post     = $block->getPost();
+$postView = $block->getPostView();
+?>
+<div class="bmx:grid bmx:grid-cols-3 bmx:gap-4 blog_related_post">
+    <a href="<?= $postView->getUrl($post) ?>">
+        <?php if ($postView->getImageUrl($post)): ?>
+        <img class="bmx:rounded" loading="lazy" src="<?= $postView->getImageUrl($post) ?>" alt="<?= $escaper->escapeHtmlAttr($postView->getImageAlt($post)) ?>">
+        <?php endif; ?>
+    </a>
+    <div class="bmx:col-span-2">
+        <a class="bmx:link bmx:block bmx:mb-2 bmx:text-base bmx:font-bold" href="<?= $postView->getUrl($post) ?>">
+            <?= $post->getName() ?>
+        </a>
+        <p class="flex-date"><img loading="lazy" src="<?= $block->getViewFileUrl('images/triniti-img-icon/date.svg'); ?>"
+                                 alt="<?= __('CreatedAt') ?>"> <span class="bmx:text-sm bmx:text-subdued"><?= $postView->i18nFormatDate($post->getCreatedAt()) ?></span>
+        </p>
+    </div>
+</div>

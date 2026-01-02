@@ -1,0 +1,35 @@
+<?php
+/* TEMPLATE_NAME Sidebar posts */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Triniti\Main\Block\BlogMx\Widget\Posts $block */
+$postList = $block->getPostList();
+if (!$postList) {
+    return null;
+}
+$postView = $block->getPostView();
+$categoryView = $block->getCategoryView();
+$firsPost = reset($postList);
+$mainCategory = $postView->getMainCategory($firsPost);
+?>
+<div class="mt-60 actions-block-slider">
+    <div class="block-slider-head blog-slider-head">
+        <div class="l-side">
+            <span class="title"><?= __('Video slider title') ?></span>
+            <div class="label">
+                <img src="<?= $block->getViewFileUrl('images/triniti-img-icon/youtube-w.svg'); ?>" alt="img">
+                <a href="https://www.youtube.com/channel/UCVb1Put8vtu5nd65D8ZSo5A" target="_blank">YouTube</a>
+            </div>
+        </div>
+        <a href="<?= $categoryView->getUrl($mainCategory) ?>"><?= __('All video') ?></a>
+    </div>
+    <div class="blog_slider">
+        <?php
+        /**
+         * @var integer $i
+         * @var \Mirasvit\BlogMx\Model\Post $post
+         */
+        foreach ($postList as $i => $post): ?>
+            <?= $postView->render('chunks/post_7.phtml', ['post' => $post]) ?>
+        <?php endforeach ?>
+    </div>
+</div>

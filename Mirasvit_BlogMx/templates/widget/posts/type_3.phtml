@@ -1,0 +1,32 @@
+<?php
+/* TEMPLATE_NAME Two detailed posts with small posts */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Widget\Posts $block */
+$postList = $block->getPostList();
+if (count($postList) < 2) {
+    return null;
+}
+$postView   = $block->getPostView();
+$authorView = $block->getAuthorView();
+
+$topPosts = array_chunk($postList, 2)[0];
+$postList = array_slice($postList, 2);
+?>
+<?php if ($block->getTitle()): ?>
+    <h3 class="blog__posts__type-3__title bmx:card-title"><?= $block->getTitle() ?></h3>
+<?php endif ?>
+<div class="blog__posts__type-3 bmx:card bmx:mb-12">
+    <div class="bmx:grid bmx:lg:grid-cols-2 bmx:gap-6">
+        <?php foreach ($topPosts as $post): ?>
+            <?= $postView->render('chunks/post_2.phtml', ['post' => $post]) ?>
+        <?php endforeach ?>
+    </div>
+    <div class="bmx:grid bmx:lg:grid-cols-2 bmx:gap-x-6">
+        <?php foreach ($postList as $post): ?>
+            <div>
+                <div class="bmx:hr"></div>
+                <?= $postView->render('chunks/post_1.phtml', ['post' => $post]) ?>
+            </div>
+        <?php endforeach ?>
+    </div>
+</div>

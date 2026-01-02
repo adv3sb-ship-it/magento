@@ -1,0 +1,45 @@
+<?php
+/* TEMPLATE_NAME Single post as card */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Widget\Posts $block */
+
+$postList = $block->setLimit(1)
+    ->getPostList();
+if (!$postList) {
+    return null;
+}
+$postView     = $block->getPostView();
+$categoryView = $block->getCategoryView();
+$authorView   = $block->getAuthorView();
+
+$post = $postList[0];
+?>
+
+<div class="blog__posts__type-1 bmx:rounded bmx:shadow bmx:overflow-hidden bmx:mb-12 bmx:relative bmx:min-h-250 bmx:mask">
+    <a href="<?= $postView->getUrl($post) ?>">
+        <div class="bmx:thumb bmx:relative bmx:overflow-hidden hover:scale-110 ease-in-out duration-300">
+            <?php if ($postView->getImageUrl($post)): ?>
+            <img class="bmx:block" loading="lazy" src="<?= $postView->getImageUrl($post) ?>" alt="<?= $escaper->escapeHtmlAttr($postView->getImageAlt($post)) ?>">
+            <?php endif; ?>
+        </div>
+    </a>
+
+    <div class="bmx:absolute bmx:p-12" style="bottom: 0; left: 0;">
+        <?php if ($category = $postView->getMainCategory($post)): ?>
+            <a href="<?= $categoryView->getUrl($category) ?>" class="bmx:category-badge bmx:mb-4">
+                <?= $category->getName() ?>
+            </a>
+        <?php endif ?>
+
+        <a href="<?= $postView->getUrl($post) ?>" class="bmx:block bmx:text-white bmx:font-bold bmx:text-2xl"><?= $post->getName() ?></a>
+
+        <ul class="bmx:list-inline bmx:mt-4 bmx:text-white bmx:opacity-60 bmx:text-sm">
+            <?php if ($author = $postView->getAuthor($post)): ?>
+                <li>
+                    <a href="<?= $authorView->getUrl($author) ?>" class="bmx:text-white"><?= $author->getName() ?></a>
+                </li>
+            <?php endif ?>
+            <li><?= $postView->formatDate($post->getCreatedAt()) ?></li>
+        </ul>
+    </div>
+</div>

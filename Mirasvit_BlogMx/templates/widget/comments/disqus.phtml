@@ -1,0 +1,65 @@
+<?php
+/** @var \Mirasvit\BlogMx\Block\Widget\Post\View $block */
+$post = $block->getPost();
+if (!$post) {
+    return;
+}
+?>
+
+<?php /*
+<div class="blog-comments-block">
+<div id="disqus_thread"></div>
+<script>
+    var disqus_config = function () {
+        this.page.url = "<?= $block->escapeUrl($post->getUrl()) ?>";
+        this.page.identifier = "blog-post-<?= (int)$post->getId() ?>";
+    };
+    (function () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://https-triniti-sb-com-ua.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Будь ласка, увімкніть JavaScript, щоб переглядати <a href="https://disqus.com/?ref_noscript">коментарі Disqus.</a></noscript>
+</div>
+*/ ?>
+
+<meta property="fb:app_id" content="744551544653720" />
+<meta property="fb:admins" content="100054508837062" />
+
+
+<div class="blog-comments-block">
+<div id="fb-root"></div>
+
+
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/uk_UA/sdk.js#xfbml=1&version=v2.6";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
+
+
+<?php
+use Magento\Framework\App\ObjectManager;
+use Magento\Store\Model\StoreManagerInterface;
+
+/** @var \Mirasvit\BlogMx\Api\Data\PostInterface $post */
+$post = $block->getPost();
+
+$identifier = $post->getUrlKey();
+$storeManager = ObjectManager::getInstance()->get(StoreManagerInterface::class);
+$store = $storeManager->getStore();
+$baseUrl = rtrim($store->getBaseUrl(), '/');
+$blogUrl = $baseUrl . '/blog/' . $identifier . '/';
+?>
+<div class="blog__comments__default mx-rounded mx-bordered mx-p-30 mx-mb-30">
+<div class="fb-comments" data-href="<?= $blogUrl ?>" data-width="100%" data-numposts="9"></div>
+</div>
+</div>

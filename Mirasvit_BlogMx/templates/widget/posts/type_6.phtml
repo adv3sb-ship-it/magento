@@ -1,0 +1,20 @@
+<?php
+/* TEMPLATE_NAME posts list */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Widget\Posts $block */
+$postList = $block->getPostList();
+if (!$postList) {
+    return null;
+}
+$postView = $block->getPostView();
+?>
+
+<?php if ($block->getTitle()): ?>
+    <h3 class="blog__posts__type-6__title bmx:card-title"><?= $block->getTitle() ?></h3>
+<?php endif ?>
+<div class="blog__posts__type-6 bmx:card bmx:mb-12">
+    <?php foreach ($postList as $post): ?>
+        <?= $postView->render('chunks/post_5.phtml', ['post' => $post]) ?>
+        <div class="bmx:hr bmx:last:hidden"></div>
+    <?php endforeach ?>
+</div>

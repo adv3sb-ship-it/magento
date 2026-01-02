@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+      layout="1column">
+
+    <body>
+        <referenceBlock name="page.main.title" remove="true"/>
+
+        <referenceContainer name="content">
+            <block name="index.index" class="Triniti\Main\Block\BlogMx\Widget\Author"
+                   template="Mirasvit_BlogMx::widget/author/index.phtml"/>
+            <container name="product.info.subscribe.wrapper" htmlTag="div" htmlClass="mt-60 callback" after="-">
+                <block class="Magento\Newsletter\Block\Subscribe" name="product.info.newsletter"
+                       template="Magento_Newsletter::subscribe-home.phtml">
+                </block>
+            </container>
+        </referenceContainer>
+        <referenceContainer name="main" htmlClass="container"/>
+        <referenceContainer name="columns" htmlTag="div" htmlClass="columns container"/>
+        <referenceContainer name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="author-page"/>
+        <move element="recently_viewed" destination="content" before="product.info.subscribe.wrapper"/>
+    </body>
+</page>

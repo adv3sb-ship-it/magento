@@ -1,0 +1,116 @@
+Save,сохранить
+Save & Continue Edit,Сохранить и продолжить редактирование
+Author Information,Информация об авторе
+Display Name,Экранное имя
+Biographical Info,биография
+Username,Имя пользователя
+First Name,Имя
+Last Name,Фамилия
+General Information,Общая информация
+Title,Название
+Parent Category,Основная категория
+Status,Статус
+Disabled,Отключен
+Enabled,Включено
+Order, порядок
+Search Engine Optimization,Оптимизация поисковой машины
+URL Key,Ключ URL
+Meta Title,Цель название
+Meta Description,Метаописание
+Meta Keywords,Мета-ключевые слова
+Save & Close,Сохранить и закрыть
+Автор, Автор
+категории,Категории
+Featured Image,Изображение
+Alt,Альт
+Is show on Blog Home page,Показать на главной странице блога
+Publish,Место
+Published on,Опубликовано
+Pin post at the top,Закрепить сообщение вверху
+Store Views,Виды магазина
+All Store Views,Все просмотры магазина
+Excerpt,Резюме
+Position,Позиция
+ID,ID
+Name,Имя
+SKU,Код товару
+Visibility,Видимость
+Related Products,Сопутствующие товары
+Автор: %1,Автор: %1
+Home,домой
+Go to Home Page, Перейти на главную страницу
+Blog,Блог
+Related Posts %1, Связанные публикации %1
+Date,Дата
+Search results for: '%1',"Результаты поиска для: ""%1"""
+Tag: %1,Тег: %1
+Mirasvit Blog MX, Миросвет Блог MX
+Authors,Авторы
+This author no longer exists.,Этого автора больше не существует.
+Автор был успешно сохранен, Автор успешно сохранен
+Категория была удалена.,Категория удалена.
+Эта категория не существует.,Эта категория больше не существует.
+New Category,Новая категория
+Category was successfully saved,Категория успешно сохранена
+Posts,Сообщить
+The post has been deleted.,Сообщение удалено.
+This post no longer exists.,Это сообщение больше не существует.
+New Post,Новое сообщение
+All Posts,Все сообщения
+Please correct the data sent.,Скорректируйте даты.
+Something went wrong while saving the post.,При сохранении сообщения произошла ошибка.
+Post was successfully saved,Сообщения успешно сохранены
+Page not found,Страница не найдена
+[GLOBAL],[ГЛОБАЛЬНЫЙ]
+Disable comments,Отключить комментарии
+Draft,Концепция
+Pending Review,Ожидает рассмотрения
+Published,Опубликовано
+"File type not allowed (только JPG, JPEG, PNG и GIF не запрещен)","Формат файла запрещен (разрешены только JPG, JPEG, PNG и GIF)"
+Edit,Редактировать
+Delete,удалить
+Delete ${ $.$data.name },Удалить ${ $.$data.name }
+Вы уверены, что хотите удалить ${$.$data.name}?"
+Preview Changes,Просмотреть изменения
+a,a
+p,стр.
+Read more...,Подробнее...
+There are no posts available for this category.,Для цієї категорії немає публікацій.
+Items %1-%2 of %3,Повідомлення %1-%2 від %3
+%1 Item,%1 повідомлення
+%1 Items,%1 Повідомлення
+Show,Показати
+per page,на сторінку
+Sort By,сортувати далі
+Set Ascending Direction,Виберіть перегляд за зростанням
+Set Descending Direction,Виберіть перегляд за спаданням
+0 Comments,0 коментарів
+Featured Posts, Рекомендовані публікації
+Related Posts,Схожі повідомлення
+Your search returned no results.,Ваш пошук не дав результатів.
+Recent Posts,Останні повідомлення
+Search...,  Поиск...
+Mirasvit Extensions,Розширення Мірасвіт
+Blog MX,BlogMX
+Top Menu Title,Назва головного меню
+Blog Name,Назва блогу
+Date Format,Відображення дати
+Visible Navigation Menu,Видиме навігаційне меню
+Base URL,URL за замовчуванням
+Base Meta Title,Стандартна мета назва
+Base Meta Description,Стандартний метаопис
+Base Meta Keywords,Стандартні мета-ключові слова
+URL Suffix for Posts,Повідомлення суфікса URL
+URL Suffix for Categories,Категорії суфіксів URL
+Provider,Провайдер
+Disqus Blog Shortname,Скорочена назва блогу Disqus
+Enable AddThis Sharing Buttons,Використовуйте кнопки спільного доступу AddThis
+Blog MX: Recent Posts,Блог MX: останні дописи
+List of Blog Posts,Список повідомлень
+Number of Posts to display,Показати кількість повідомлень
+Image width (px),Ширина зображення (px)
+Image height (px),Висота зображення (px)
+Add New Post,Додати нове повідомлення
+Category,Категория 
+Published On,Опубликовано
+Search Button,Искать

@@ -1,0 +1,12 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Chunk\PostChunkRenderer $block */
+$post     = $block->getPost();
+$postView = $block->getPostView();
+?>
+<div class="blog-top-news-item">
+    <span class="date"><?= $postView->i18nFormatDate($post->getCreatedAt()) ?></span>
+    <a href="<?= $postView->getUrl($post) ?>">
+        <?= $post->getName() ?>
+    </a>
+</div>

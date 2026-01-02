@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+      layout="1column">
+
+    <update handle="blog_default"/>
+
+    <referenceBlock name="head.additional">
+        <block class="Mirasvit\BlogMx\Block\Html\OpenGraph" name="block.opengraph"
+               template="html/opengraph.phtml"/>
+    </referenceBlock>
+
+    <referenceContainer name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="page-main catalog-page action-detailed-page blog-detail-page"/>
+
+    <referenceContainer name="main" htmlClass="container-with_aside flex"/>
+
+    <referenceContainer name="columns" htmlClass="container">
+        <container name="product.info.subscribe.wrapper" htmlTag="div" htmlClass="mt-60 callback" after="-">
+            <block class="Magento\Newsletter\Block\Subscribe" name="product.info.newsletter"
+                   template="Magento_Newsletter::subscribe-home.phtml"/>
+        </container>
+    </referenceContainer>
+
+    <move element="recently_viewed" destination="columns" before="product.info.subscribe.wrapper"/>
+    <move element="page.main.title" destination="columns" before="-"/>
+</page>

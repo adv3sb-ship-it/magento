@@ -1,0 +1,23 @@
+<?php
+/* TEMPLATE_NAME Posts as cards */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Widget\Posts $block */
+return null;
+$postList = $block->getPostList();
+if (!$postList) {
+    return null;
+}
+
+$postView = $block->getPostView();
+?>
+<div class="content-with_aside">
+    <div class="detail-info blog-detail-all">
+        <div class="blog-detail-all-wrap n-p">
+            <div class="blog_slider-small">
+                <?php foreach ($postList as $post): ?>
+                    <?= $postView->render('chunks/post_3.phtml', ['post' => $post]) ?>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Chunk\PostChunkRenderer $block */
+$post = $block->getPost();
+$postView = $block->getPostView();
+$authorView = $block->getAuthorView();
+$categoryView = $block->getCategoryView();
+?>
+<div class="blog-card" data-post-id="<?= $post->getId() ?>">
+    <div class="blog-card_wrapper">
+        <div class="blog-card_video-youtube">
+            <a href="<?= $postView->getUrl($post) ?>" class="rounded overflow-hidden block">
+                <?php if ($postView->getImageUrl($post)): ?>
+                    <img loading="lazy" src="<?= $postView->getImageUrl($post) ?>" data-lazy="<?= $postView->getImageUrl($post) ?>"
+                         alt="<?= $escaper->escapeHtmlAttr($postView->getImageAlt($post)) ?>"/>
+                <?php elseif ($videoId = $post->getVideoId()): ?>
+                    <img loading="lazy" src="https://img.youtube.com/vi/<?= $videoId ?>/maxresdefault.jpg" data-lazy="https://img.youtube.com/vi/<?= $videoId ?>/maxresdefault.jpg"
+                         alt="<?= $post->getName() ?>" title="<?= $post->getName() ?>"/>
+                <?php endif ?>
+            </a>
+        </div>
+    </div>
+    <div class="blog-card_head-row">
+        <?php if ($category = $postView->getMainCategory($post)): ?>
+            <span class="blogcat">
+                <a href="<?= $categoryView->getUrl($category) ?>"><?= $category->getName() ?></a>
+            </span>
+        <?php endif ?>
+         <span class="date"><?= $postView->i18nFormatDate($post->getCreatedAt()) ?></span>
+            <span class="post-views-count">
+                    <?php if ($post->getViewCount()): ?>    
+                            <img loading="lazy" src="<?= $block->getViewFileUrl('images/triniti-img-icon/views.svg'); ?>"
+                                alt="<?= __('post views') ?>">&nbsp;
+                            <?= $block->escapeHtml($post->getViewCount()) ?>
+                    <?php endif ?>
+            </span>
+    </div>
+    <a href="<?= $postView->getUrl($post) ?>" class="name">
+        <?= $post->getName() ?>
+    </a>
+    <div class="bottom-btm">
+        <a href="<?= $postView->getUrl($post) ?>" class="transparent"><?= __('Go to detail') ?></a>
+    </div> 
+</div>

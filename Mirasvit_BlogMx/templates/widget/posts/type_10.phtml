@@ -1,0 +1,33 @@
+<?php
+/* TEMPLATE_NAME Sidebar posts */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Triniti\Main\Block\BlogMx\Widget\Posts $block */
+$postList = $block->getPostList();
+if (!$postList) {
+    return null;
+}
+$postView = $block->getPostView();
+?>
+<div class="mt-60 actions-block-slider tab-section">
+    <div class="block-slider-head slider-head-left ">
+        <div class="l-side">
+            <span class="title"><?= __('Articles on the topic') ?></span>
+        </div>
+        <a href="<?=$this->getBlogBaseUrl()?>"><?= __('Go to blog') ?></a>
+    </div>
+    <div class="b-tab">
+        <div class="actions_slider">
+            <?php
+            /**
+             * @var integer $i
+             * @var \Mirasvit\BlogMx\Model\Post $post
+             */
+            foreach ($postList as $i => $post): ?>
+                <?= $postView->render('chunks/post_6.phtml', ['post' => $post]) ?>
+            <?php endforeach ?>
+        </div>
+    </div>
+    <div class="block-slider-head ">
+        <a href="<?=$this->getBlogBaseUrl()?>"><?= __('Go to blog') ?></a>
+    </div>
+</div>

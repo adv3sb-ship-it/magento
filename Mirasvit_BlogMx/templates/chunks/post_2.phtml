@@ -1,0 +1,47 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Chunk\PostChunkRenderer $block */
+$post         = $block->getPost();
+$postView     = $block->getPostView();
+$authorView   = $block->getAuthorView();
+$categoryView = $block->getCategoryView();
+?>
+<div>
+    <div class="bmx:grid bmx:gap-4">
+        <div class="bmx:relative bmx:overflow-hidden bmx:rounded">
+            <?php if ($category = $postView->getMainCategory($post)): ?>
+                <a href="<?= $categoryView->getUrl($category) ?>" class="bmx:category-badge bmx:absolute" style="top: 10px; left: 10px;">
+                    <?= $category->getName() ?>
+                </a>
+            <?php endif ?>
+
+            <?php if ($postView->getImageUrl($post)): ?>
+            <a href="<?= $postView->getUrl($post) ?>">
+                <img class="bmx:block" loading="lazy" src="<?= $postView->getImageUrl($post) ?>" alt="<?= $escaper->escapeHtmlAttr($postView->getImageAlt($post)) ?>">
+            </a>
+            <?php endif; ?>
+        </div>
+
+
+        <ul class="bmx:list-inline bmx:text-sm">
+            <?php if ($author = $postView->getAuthor($post)): ?>
+                <li>
+                    <a href="<?= $authorView->getUrl($author) ?>" class="bmx:text-subdued bmx:flex bmx:gap-2 bmx:items-center">
+                        <?php if ($imageUrl = $authorView->getImageUrl($author)): ?>
+                            <img src="<?= $imageUrl ?>" class="bmx:rounded-full" loading="lazy" width="32px" height="32px" alt="<?= $escaper->escapeHtmlAttr($author->getName()) ?>"/>
+                        <?php endif ?>
+                        <?= $author->getName() ?>
+                    </a>
+                </li>
+            <?php endif ?>
+            <li class="bmx:text-subdued"><?= $postView->i18nFormatDate($post->getCreatedAt()) ?></li>
+        </ul>
+
+        <a class="bmx:link bmx:block bmx:text-xl bmx:font-bold" href="<?= $postView->getUrl($post) ?>">
+            <?= $post->getName() ?>
+        </a>
+        <div class="bmx:text-subdued">
+            <?= $postView->getExcerpt($post) ?>
+        </div>
+    </div>
+</div>

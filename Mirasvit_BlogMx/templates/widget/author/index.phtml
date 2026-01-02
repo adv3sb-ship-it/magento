@@ -1,0 +1,107 @@
+<?php
+declare(strict_types=1);
+
+/** @var \Triniti\Main\Block\BlogMx\Widget\Author $block */
+
+$authorList = $block->getAuthorList();
+if (!$authorList) {
+    return null;
+}
+
+$authorView = $block->getAuthorView();
+?>
+<?php
+$crumbs = [
+    [
+        'code'  => 'home',
+        'label' => (string) __('TRINITI-SB'),
+        'title' => (string) __('Go to Home Page'),
+        'link'  => $block->getUrl(''),
+    ],
+    [
+        'code'  => 'blog',
+        'label' => (string) __('Блог про системи безпеки'),
+        'title' => (string) __('Блог про системи безпеки'),
+        'link'  => $block->getUrl('blog'),
+    ],
+];
+
+// останній пункт — автор, без лінку
+$lastCrumb = [
+    'code'  => 'authors',
+    'label' => (string) __('Автори'),
+    'title' => (string) __('Автори'),
+    'link'  => '',
+];
+?>
+
+<div class="breadcrumbs">
+    <ul class="items">
+        <?php foreach ($crumbs as $crumb): ?>
+            <li class="item <?= $block->escapeHtmlAttr($crumb['code']) ?>">
+                <a href="<?= $crumb['link'] ?>"
+                   title="<?= $block->escapeHtmlAttr($crumb['title']) ?>">
+                    <?= $block->escapeHtml($crumb['label']) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+        <li class="item <?= $block->escapeHtmlAttr($lastCrumb['code']) ?>">
+            <?= $block->escapeHtml($lastCrumb['label']) ?>
+        </li>
+    </ul>
+</div>
+
+<h1><?= __('Blog authors') ?></h1>
+<div class="author-list">
+    <?php foreach ($authorList as $author): ?>
+        <div class="author-wrap-item">
+            <div class="author-wrap-item_img">
+                <?php if ($imageUrl = $authorView->getImageUrl($author)): ?>
+                    <?php /*  <img loading="lazy" src="<?= $imageUrl ?>" alt="<?= $author->getName(); ?>"> */ ?>
+                    <img loading="lazy" src="<?= $imageUrl ?>" alt="<?= $block->escapeHtmlAttr((string) __($author->getName())) ?>">
+                <?php endif ?>
+                 <?php /*  <span class="name"><?= $author->getName() ?></span> */ ?>
+                 <span class="name"><?= $block->escapeHtml(__($author->getName())) ?></span>
+            </div>
+            <div class="author-wrap-item_cont">
+                <?php /*  <span class="name"><?= $author->getName() ?></span> */ ?>
+                <span class="name"><?= $block->escapeHtml(__($author->getName())) ?></span>
+                <?php if ($author->getJobTitle()): ?>
+                    <?php /* <p class="bmx:text-subdued bmx:text-sm"><?= $author->getJobTitle() ?></p> */ ?>
+                    <p class="bmx:text-subdued bmx:text-sm"><?= $block->escapeHtml(__($author->getJobTitle())) ?></p>
+                <?php endif ?>
+                <?php /* <p><?= $author->getShortBio() ?> </p> */ ?>
+<?php 
+/** сформуємо стабільний ключ для перекладу короткого біо */
+$filter = \Magento\Framework\App\ObjectManager::getInstance()
+    ->get(\Magento\Framework\Filter\FilterManager::class);
+
+$nameSlug = $filter->translitUrl((string)$author->getName()); // "Іван Петров" → "ivan-petrov"
+if (!$nameSlug) {
+    $nameSlug = 'author_' . (int)$author->getId();
+}
+$nameSlug = str_replace('-', '_', $nameSlug);
+$shortBioKey = 'shortbio_' . $nameSlug;
+?>
+<p class="bmx:text-sm"><?= $block->escapeHtml((string) __($shortBioKey)) ?></p>
+
+                <a href="<?= $authorView->getUrl($author) ?>" class="transparent"><?= __('Go to detail') ?></a>
+            </div>
+        </div>
+    <?php endforeach; ?>
+</div>
+
+<script type="application/ld+json">
+<?= json_encode([
+    '@context' => 'https://schema.org',
+    '@graph' => array_map(function ($author) use ($authorView) {
+        return [
+            '@type' => 'Person',
+            'name' => (string) __($author->getName()),
+            'url' => $authorView->getUrl($author),
+            'image' => $authorView->getImageUrl($author),
+            'jobTitle' => (string) __($author->getJobTitle()),
+        ];
+    }, $authorList),
+], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT) ?>
+</script>

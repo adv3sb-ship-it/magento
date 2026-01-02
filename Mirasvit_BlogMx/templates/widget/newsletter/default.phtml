@@ -1,0 +1,28 @@
+<?php
+declare(strict_types=1);
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Widget\Newsletter\Subscribe $block */
+?>
+<div class="blog__newsletter__default bmx:card bmx:mb-8">
+    <?php if ($block->getTitle()): ?>
+        <div class="bmx:card-title bmx:items-center"><?= $block->getTitle() ?></div>
+    <?php endif ?>
+    <form action="<?= $escaper->escapeUrl($block->getFormActionUrl()) ?>" method="post">
+        <input type="hidden" name="form_key" value="<?= $block->getFormKey() ?>"/>
+
+        <div class="bmx:grid bmx:gap-2">
+            <input name="email" type="email" id="newsletter"
+                   placeholder="<?= __('Enter your email address') ?>"
+                   class="form-input bmx:w-full"
+                   required
+            />
+
+            <button class="action action-primary"
+                    title="<?= __('Subscribe') ?>"
+                    type="submit"
+                    aria-label="Subscribe">
+                <?= __('Subscribe') ?>
+            </button>
+        </div>
+    </form>
+</div>

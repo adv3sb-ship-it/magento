@@ -1,0 +1,47 @@
+<?php
+declare(strict_types=1);
+//@codingStandardsIgnoreFile
+
+?>
+<?php if ($block->getPost()):?>
+<?php if ($block->getCommentProvider() == 'facebook'): ?>
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <div class="blog__comments__default mx-rounded mx-bordered mx-p-30 mx-mb-30">
+        <div class="fb-comments" data-href="<?= $block->getPost()->getUrl() ?>"
+             data-numposts="5" width="100%"></div>
+    </div>
+<?php endif ?>
+
+<?php if ($block->isAddThisEnabled()): ?>
+    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+    <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-554788110b283abc"></script>
+<?php endif ?>
+<?php endif;?>
+
+
+ <?php if ($block->getPost()): ?>
+    <div id="disqus_thread"></div>
+    <script>
+        var disqus_config = function () {
+            this.page.url = "<?= $block->getPost()->getUrl() ?>";
+            this.page.identifier = "blog-post-<?= $block->getPost()->getId() ?>";
+        };
+        (function () {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://https-triniti-sb-com-ua.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+    <noscript>Будь ласка, увімкніть JavaScript, щоб переглядати <a href="https://disqus.com/?ref_noscript">коментарі Disqus.</a></noscript>
+<?php endif; ?>

@@ -1,0 +1,13 @@
+<?php
+declare(strict_types=1);
+
+/** @var $block Toolbar */
+
+use Mirasvit\BlogMx\Block\Widget\Post\PostList\Toolbar;
+?>
+
+<?php if ($block->getCollection()->getSize()): ?>
+    <div class="toolbar mx-list-toolbar">
+        <?= $block->getPagerHtml() ?>
+    </div>
+<?php endif ?>

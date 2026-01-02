@@ -1,0 +1,116 @@
+Save,зберегти
+Save & Continue Edit,Зберегти та продовжити редагування
+Author Information,Інформація про автора
+Display Name,Екранне ім'я
+Biographical Info,біографія
+Username,Ім'я користувача
+First Name,Ім'я
+Last Name,Прізвище
+General Information,Загальна інформація
+Title,Назва
+Parent Category,Основна категорія
+Status,Статус
+Disabled,Вимкнений
+Enabled,Увімкнено
+Order,порядок
+Search Engine Optimization,Оптимізація пошукової машини
+URL Key,Ключ URL
+Meta Title,Мета назва
+Meta Description,Метаопис
+Meta Keywords,Мета-ключові слова
+Save & Close,Зберегти та закрити
+Author,Автор
+Categories,Категорії
+Featured Image,Зображення
+Alt,Альт
+Is show on Blog Home page,Показати на головній сторінці блогу
+Publish,Місце
+Published on,Опубліковано
+Pin post at the top,Закріпити повідомлення вгорі
+Store Views,Види магазину
+All Store Views,Всі перегляди магазину
+Excerpt,Резюме
+Position,Позиція
+ID,ID
+Name,Ім'я
+SKU,Код товару
+Visibility,Видимість
+Related Products,Супутні товари
+Author: %1,Автор: %1
+Home,Головна
+Go to Home Page, Перейти на головну сторінку
+Blog,Блог
+Related Posts %1, Пов’язані публікації %1
+Date,Дата
+Search results for: '%1',"Результати пошуку для: ""%1"""
+Tag: %1,Тег: %1
+Mirasvit Blog MX,Мірасвіт Блог MX
+Authors,Автори
+This author no longer exists.,Цього автора більше не існує.
+Author was successfully saved, Автора успішно збережено
+The category has been deleted.,Категорію видалено.
+This category no longer exists.,Ця категорія більше не існує.
+New Category,Нова категорія
+Category was successfully saved,Категорію успішно збережено
+Posts,Публікації
+The post has been deleted.,Повідомлення видалено.
+This post no longer exists.,Це повідомлення більше не існує.
+New Post,Нове повідомлення
+All Posts,Всі публікації
+Please correct the data sent.,Відкоригуйте дати.
+Something went wrong while saving the post.,Під час збереження повідомлення сталася помилка.
+Post was successfully saved,Повідомлення успішно збережено
+Page not found,Сторінку не знайдено
+[GLOBAL],[ГЛОБАЛЬНИЙ]
+Disable comments,Відключити коментарі
+Draft,Концепція
+Pending Review,Очікує розгляду
+Published,Опубліковано
+"File type not allowed (only JPG, JPEG, PNG & GIF files are allowed)","Формат файлу заборонений (дозволені лише JPG, JPEG, PNG і GIF)"
+Edit,Редагувати
+Delete,видалити
+Delete ${ $.$data.name },Видалити ${ $.$data.name }
+Are you sure you wan't to delete a ${ $.$data.name } record?,"Ви впевнені, що хочете видалити ${ $.$data.name }?"
+Preview Changes,Переглянути зміни
+a,a
+p,стор
+Read more...,Детальніше...
+There are no posts available for this category.,Для цієї категорії немає публікацій.
+Items %1-%2 of %3,Повідомлення %1-%2 від %3
+%1 Item,%1 повідомлення
+%1 Items,%1 Повідомлення
+Show,Показати
+per page,на сторінку
+Sort By,сортувати далі
+Set Ascending Direction,Виберіть перегляд за зростанням
+Set Descending Direction,Виберіть перегляд за спаданням
+0 Comments,0 коментарів
+Featured Posts, Рекомендовані публікації
+Related Posts,Схожі повідомлення
+Your search returned no results.,Ваш пошук не дав результатів.
+Recent Posts,Останні повідомлення
+Search...,   Пошук...
+Mirasvit Extensions,Розширення Мірасвіт
+Blog MX,BlogMX
+Top Menu Title,Назва головного меню
+Blog Name,Назва блогу
+Date Format,Відображення дати
+Visible Navigation Menu,Видиме навігаційне меню
+Base URL,URL за замовчуванням
+Base Meta Title,Стандартна мета назва
+Base Meta Description,Стандартний метаопис
+Base Meta Keywords,Стандартні мета-ключові слова
+URL Suffix for Posts,Повідомлення суфікса URL
+URL Suffix for Categories,Категорії суфіксів URL
+Provider,Провайдер
+Disqus Blog Shortname,Скорочена назва блогу Disqus
+Enable AddThis Sharing Buttons,Використовуйте кнопки спільного доступу AddThis
+Blog MX: Recent Posts,Блог MX: останні дописи
+List of Blog Posts,Список повідомлень
+Number of Posts to display,Показати кількість повідомлень
+Image width (px),Ширина зображення (px)
+Image height (px),Висота зображення (px)
+Add New Post,Додати нове повідомлення
+Category,Категорія 
+Published On,Опубліковано
+Search Button,Шукати

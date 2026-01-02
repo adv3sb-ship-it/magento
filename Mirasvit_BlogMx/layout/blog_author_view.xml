@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+      layout="2columns-right">
+
+    <update handle="blog_default"/>
+
+    <body>
+        <referenceBlock name="page.main.title" remove="true"/>
+
+        <referenceContainer name="main.content" htmlTag="main" htmlId="maincontent" htmlClass="page-main author-page"/>
+        <referenceContainer name="main" htmlClass="author-page-wrapper"/>
+        <referenceContainer name="columns" htmlClass="container">
+            <container name="product.info.subscribe.wrapper" htmlTag="div" htmlClass="mt-60 callback" after="-">
+                <block class="Magento\Newsletter\Block\Subscribe" name="product.info.newsletter"
+                       template="Magento_Newsletter::subscribe-home.phtml">
+                </block>
+            </container>
+        </referenceContainer>
+        <move element="recently_viewed" destination="columns" before="product.info.subscribe.wrapper"/>
+    </body>
+</page>

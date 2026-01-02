@@ -1,0 +1,22 @@
+<?php
+declare(strict_types=1);
+
+/** @var Mirasvit\BlogMx\Block\Html\OpenGraph $block */
+
+$post = $block->getPost();
+
+?>
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content="<?php /* @escapeNotVerified */ echo $block->stripTags($post->getName()); ?>" />
+<meta property="og:image" content="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getImageUrl()); ?>" />
+<meta property="og:description" content="<?php /* @escapeNotVerified */ echo $block->stripTags(trim($block->getDescription())); ?>" />
+<meta property="og:url" content="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getPostUrl()); ?>" />
+<?php if ($block->getLocale() !== 'en_US'): ?>
+<meta property="og:locale" content="<?php /* @escapeNotVerified */ echo $block->stripTags($block->getLocale()); ?>" />
+<?php endif; ?>
+<?php /* <meta property="og:article:author" content="<?php echo $block->stripTags($block->getAuthorName()); ?>" /> */ ?>
+<meta property="og:article:author" content="<?= $block->escapeHtml((string) __($block->getAuthorName())) ?>" />
+<?php foreach ($block->getPostTags() as $tag): ?>
+<meta property="og:article:tag" content="<?php /* @escapeNotVerified */ echo $block->stripTags($tag->getName()); ?>" />
+<?php endforeach; ?>

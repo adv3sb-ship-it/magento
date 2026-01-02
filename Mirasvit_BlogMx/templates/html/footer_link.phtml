@@ -1,0 +1,16 @@
+<?php
+declare(strict_types=1);
+
+/** @var  Mirasvit\BlogMx\Block\Html\FooterLink $block */
+$link      = $block->getBlogLink();
+$name      = $block->getBlogName();
+$isDisplay = $block->isDisplayInFooter();
+?>
+
+<?php if ($isDisplay): ?>
+    <ul class="footer links">
+        <li>
+            <a href="<?= $link ?>" class="footer links"><?= $name ?></a>
+        </li>
+    </ul>
+<?php endif; ?>

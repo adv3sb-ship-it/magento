@@ -1,0 +1,54 @@
+<?php
+declare(strict_types=1);
+
+/** @var \Mirasvit\BlogMx\Block\Widget\Author $block */
+
+$author = $block->getAuthor();
+if (!$author) {
+    return null;
+}
+
+$authorView = $block->getAuthorView();
+
+$socialLinks = [];
+foreach ($block->getSocialLinks() as $social) {
+    if ($social['link']) {
+        $socialLinks[] = $social;
+    }
+}
+?>
+
+<div class="blog__author__short bmx:rounded bmx:p-8 bmx:mb-6" style="background: #f1f8ff;">
+    <div class="bmx:flex bmx:gap-6">
+        <?php if ($imageUrl = $authorView->getImageUrl($author)): ?>
+            <div class="bmx:flex-shrink-0">
+                <a href="<?= $author->getUrl() ?>">
+                    <img class="bmx:rounded-full bmx:block" loading="lazy" src="<?= $imageUrl ?>" alt="<?= $author->getName(); ?>" width="100px" height="100px">
+                </a>
+            </div>
+        <?php endif ?>
+
+        <div class="bmx:grid bmx:gap-2">
+            <a href="<?= $author->getUrl() ?>" class="bmx:link bmx:text-xl bmx:font-bold"><?= $author->getName() ?></a>
+
+            <?php if ($author->getJobTitle()): ?>
+                <p class="bmx:text-subdued bmx:text-sm"><?= $author->getJobTitle() ?></p>
+            <?php endif ?>
+
+
+            <div class="bmx:text-sm">
+                <?= $author->getShortBio() ?>
+            </div>
+
+            <?php if (count($socialLinks) > 0): ?>
+                <div class="bmx:flex bmx:gap-6">
+                    <?php foreach ($socialLinks as $social): ?>
+                        <a href="<?= $social['link'] ?>" class="bmx:text-sm bmx:text-subdued">
+                            <i class="<?= $social['icon-class'] ?> bmx:mr-2"></i><?= $social['label'] ?>
+                        </a>
+                    <?php endforeach ?>
+                </div>
+            <?php endif ?>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<?php
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Chunk\PostChunkRenderer $block */
+$post = $block->getPost();
+$postView = $block->getPostView();
+$authorView = $block->getAuthorView();
+$categoryView = $block->getCategoryView();
+
+if (!$postView->getImageUrl($post)) {
+    return null;
+}
+?>
+<div class="blog-card">
+    <a href="<?= $postView->getUrl($post) ?>">
+        <!--<img class="icon"
+             src="<?php /*= $block->getViewFileUrl('images/triniti-img-icon/arrow-left.svg'); */?>"
+             alt="img">-->
+        <?php if ($postView->getImageUrl($post)): ?>
+            <img class="lazyload"  data-src="<?= $postView->getImageUrl($post) ?>"
+                 alt="<?= $escaper->escapeHtmlAttr($postView->getImageAlt($post)) ?>">
+
+        <?php endif; ?>
+        <span>
+            <?= $post->getName() ?>
+        </span>
+        <span class="mob"> <?= $post->getName() ?></span>
+    </a>
+</div>

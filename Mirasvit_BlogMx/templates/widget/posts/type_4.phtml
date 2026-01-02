@@ -1,0 +1,24 @@
+<?php
+/* TEMPLATE_NAME Sidebar posts */
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Widget\Posts $block */
+$postList = $block->getPostList();
+if (!$postList) {
+    return null;
+}
+$postView = $block->getPostView();
+?>
+<div class="aside">
+    <div class="blog-aside-all">
+        <div class="blog-aside-cont blog-top-news">
+            <?php if ($block->getTitle()): ?>
+                <span class="name-cont"><?= __($block->getTitle()) ?></span>
+            <?php endif ?>
+            <div class="bmx:grid">
+                <?php foreach ($postList as $i => $post): ?>
+                    <?= $postView->render('chunks/post_4.phtml', ['post' => $post]) ?>
+                <?php endforeach ?>
+            </div>
+        </div>
+    </div>
+</div>

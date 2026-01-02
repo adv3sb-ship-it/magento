@@ -1,0 +1,25 @@
+<?php
+declare(strict_types=1);
+/** @var \Magento\Framework\Escaper $escaper */
+/** @var \Mirasvit\BlogMx\Block\Widget\Post\PostList $block */
+
+$postList = $block->getPostList();
+
+$postView   = $block->getPostView();
+$authorView = $block->getAuthorView();
+$author = $block->getAuthor();
+?>
+<?php /* <h1><?=__('Publications')?> <?=$author->getName()?></h1> */ ?>
+<h1><?=__('Publications')?> <?= $block->escapeHtml(__($author->getName())) ?></h1>
+<?php if ($postList): ?>
+    <div class="author-page-wrapper-list"> 
+        <?php foreach ($postList as $post): ?>
+            <?= $postView->render('chunks/post_6.phtml', ['post' => $post]) ?>
+        <?php endforeach ?>
+    </div>
+    <?= $block->getToolbarHtml() ?>
+<?php else: ?>
+    <div class="message notice">
+        <div><?= __('There are no posts available for this category.') ?></div>
+    </div>
+<?php endif ?>

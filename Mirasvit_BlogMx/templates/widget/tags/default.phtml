@@ -1,0 +1,40 @@
+<?php
+declare(strict_types=1);
+/** @var \Mirasvit\BlogMx\Block\Widget\Common\TagCloud $block */
+
+$tagView = $block->getTagView();
+
+$tags = $block->getCollection()->getItems();
+
+if (!count($tags)) {
+    return '';
+}
+?>
+<!--<div class="filter_item">-->
+<!--    <div class="filter_item-head">-->
+<!--        <span class="name"></span>-->
+<!--        <img class="close-filter" loading="lazy"-->
+<!--             src="--><?php //= $block->getViewFileUrl('images/triniti-img-icon/close.svg'); ?><!--" alt="img">-->
+<!--    </div>-->
+<!--</div>-->
+<div class="filter_item">
+    <?php if ($block->getTitle()): ?>
+        <div class="filter_item-head">
+            <span class="name"><?= __($block->getTitle()) ?></span>
+        </div>
+    <?php endif ?>
+
+    <div class="filter_item-body">
+        <?php foreach ($tags as $tag): ?>
+            <div class="filter_item-row">
+                <a href="<?= $tagView->getUrl($tag) ?>">
+                    <label>
+                        <span class="name">
+                        <?= $tag->getName() ?>
+                    </span>
+                    </label>
+                </a>
+            </div>
+        <?php endforeach ?>
+    </div>
+</div>
