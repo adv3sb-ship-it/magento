@@ -1,0 +1,10 @@
+store_id,donor_url,acceptor_url,anchor,sort_order,is_active
+0,/,/zariadni-stantsii,Зарядні станції,1,1
+0,/,/category/smartphones,Смартфони і гаджети,2,1
+0,/,/category/accessories,Аксесуари,3,1
+1,/zariadni-stantsii,/product/charger-model-1,Зарядна станція Model 1,1,1
+1,/zariadni-stantsii,/product/charger-model-2,Зарядна станція Model 2,2,1
+2,/zariadni-stantsii,/product/charger-model-1,Charging Station Model 1,1,1
+2,/zariadni-stantsii,/product/charger-model-2,Charging Station Model 2,2,1
+0,/about-us,/contact,Зв'яжіться з нами,10,1
+0,/contact,/about-us,Про нашу компанію,10,1

@@ -1,0 +1,28 @@
+<?php
+/** @var \Triniti\SeoCrossLinks\Block\SeoLinks $block */
+$links = $block->getLinks();
+if (!$links) {
+    return;
+}
+?>
+
+<div class="triniti-seo-crosslinks" style="margin:20px 0;padding:16px;border:1px solid #e5e5e5;border-radius:8px;">
+    <div style="font-weight:600;margin-bottom:10px;">SEO links</div>
+
+    <ul style="margin:0;padding-left:18px;">
+        <?php foreach ($links as $link): ?>
+            <?php
+            $href = (string)$link->getData('acceptor_url');
+            $text = (string)$link->getData('anchor');
+
+            // if acceptor is path – keep it relative
+            // if acceptor is full URL – output as is
+            ?>
+            <li style="margin:6px 0;">
+                <a href="<?= $block->escapeUrl($href) ?>">
+                    <?= $block->escapeHtml($text) ?>
+                </a>
+            </li>
+        <?php endforeach; ?>
+    </ul>
+</div>

@@ -1,0 +1,22 @@
+{
+    "triniti_seo_crosslink": {
+        "column": {
+            "entity_id": true,
+            "store_id": true,
+            "donor_url": true,
+            "acceptor_url": true,
+            "anchor": true,
+            "sort_order": true,
+            "is_active": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "TRINITI_SEO_CROSSLINK_STORE_DONOR": true,
+            "TRINITI_SEO_CROSSLINK_STORE_DONOR_ACTIVE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}

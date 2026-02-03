@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Triniti_SeoCrossLinks::root"
+             title="SEO Cross Links"
+             module="Triniti_SeoCrossLinks"
+             sortOrder="999"
+             parent="Magento_Backend::content"
+             resource="Magento_Backend::admin"/>
+
+        <add id="Triniti_SeoCrossLinks::import"
+             title="Import / Export"
+             module="Triniti_SeoCrossLinks"
+             sortOrder="10"
+             parent="Triniti_SeoCrossLinks::root"
+             action="triniti_crosslinks/import/index"
+             resource="Magento_Backend::admin"/>
+    </menu>
+</config>

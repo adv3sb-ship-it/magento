@@ -1,0 +1,51 @@
+<div class="page-main-actions">
+    <div class="page-actions">
+        <div class="page-actions-inner">
+            <div class="page-actions-buttons">
+                <button type="button" class="action-default scalable primary"
+                        onclick="setLocation('<?= $block->getExportUrl() ?>')">
+                    <span>Export CSV</span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="admin__page-section">
+    <p><strong>SEO Cross Links</strong> – сторінка жива ✅</p>
+    <p>Далі додамо форму імпорту CSV.</p>
+</div>
+
+<form action="<?= $block->getUploadUrl() ?>"
+      method="post"
+      enctype="multipart/form-data"
+      class="admin__fieldset">
+
+    <?= $block->getBlockHtml('formkey') ?>
+
+    <fieldset class="admin__fieldset">
+        <legend class="admin__legend">
+            <span><?= __('Import CSV') ?></span>
+        </legend>
+
+        <div class="admin__field">
+            <label class="admin__field-label">
+                <?= __('CSV file') ?>
+            </label>
+            <div class="admin__field-control">
+                <input type="file" name="csv_file" required />
+                <p class="note">
+                    Columns: store_id; donor; acceptor; anchor; sort_order; is_active
+                </p>
+            </div>
+        </div>
+
+        <div class="admin__field">
+            <div class="admin__field-control">
+                <button type="submit" class="action-primary">
+                    <?= __('Import & Replace') ?>
+                </button>
+            </div>
+        </div>
+    </fieldset>
+</form>

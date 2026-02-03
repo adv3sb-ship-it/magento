@@ -1,0 +1,46 @@
+<?php
+/**
+ * @var \Magento\Framework\View\Element\Template $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+$request = $block->getData('request') ?: \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Framework\App\RequestInterface::class);
+$storeManager = $block->getData('store_manager') ?: \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Store\Model\StoreManagerInterface::class);
+
+$pathInfo = $request->getPathInfo();
+$storeCode = $storeManager->getStore()->getCode();
+$storeId = $storeManager->getStore()->getId();
+
+// Simulate URL normalization from Block/SeoLinks.php
+function normalizeTestPath($path) {
+    $path = preg_replace('#/+#', '/', trim($path));
+    $path = strtolower($path);
+    if ($path === '' || $path[0] !== '/') {
+        $path = '/' . $path;
+    }
+    if ($path !== '/') {
+        $path = rtrim($path, '/');
+    }
+    return $path;
+}
+
+function removeStoreCodeFromTestPath($path, $code) {
+    if ($code === 'admin') return $path;
+    $pattern = '#^/' . preg_quote($code, '#') . '(/|$)#';
+    return preg_replace($pattern, '/', $path);
+}
+
+$normalized = normalizeTestPath($pathInfo);
+$withoutStoreCode = removeStoreCodeFromTestPath($normalized, $storeCode);
+?>
+<div style="position:fixed;left:16px;bottom:16px;z-index:999999;background:#0a4;color:#fff;padding:12px 16px;border-radius:8px;font:13px/1.4 'Courier New',monospace;max-width:500px;box-shadow:0 4px 12px rgba(0,0,0,0.3);">
+    <strong style="display:block;margin-bottom:8px;font-size:14px;">✅ TRINITI SEO CrossLinks</strong>
+    <div style="opacity:0.95;">
+        <div><strong>Store:</strong> <?= $escaper->escapeHtml($storeCode) ?> (ID: <?= (int)$storeId ?>)</div>
+        <div><strong>Original URL:</strong> <?= $escaper->escapeHtml($pathInfo) ?></div>
+        <div><strong>Normalized:</strong> <?= $escaper->escapeHtml($normalized) ?></div>
+        <?php if ($normalized !== $withoutStoreCode): ?>
+        <div style="color:#ff0;"><strong>Without store code:</strong> <?= $escaper->escapeHtml($withoutStoreCode) ?></div>
+        <div style="color:#ff0;margin-top:4px;font-size:11px;">ℹ️ Use this URL in CSV: <code style="background:#333;padding:2px 4px;border-radius:3px;"><?= $escaper->escapeHtml($withoutStoreCode) ?></code></div>
+        <?php endif; ?>
+    </div>
+</div>
