@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="triniti_seo_indexer">
+            <group id="layered_navigation_seo" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Layered Navigation SEO (Smart URLs)</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Custom SEO URLs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="all_categories" translate="label" type="select" sortOrder="15" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable for ALL Categories (Global)</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If Yes, the category selection below is ignored. Logic applies everywhere (including Brands).</comment>
+                </field>
+
+                <field id="categories" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allowed Categories (Specific)</label>
+                    <frontend_model>Triniti\LayeredNavigationSeo\Block\Adminhtml\System\Config\CategoryTree</frontend_model>
+                    <comment>Select specific categories if "Enable for ALL" is set to No.</comment>
+                    <depends>
+                        <field id="all_categories">0</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

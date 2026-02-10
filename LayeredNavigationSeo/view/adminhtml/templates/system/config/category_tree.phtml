@@ -1,0 +1,58 @@
+<?php
+/** @var \Triniti\LayeredNavigationSeo\Block\Adminhtml\System\Config\CategoryTree $block */
+$elementId = $block->getData('element_id');
+$elementName = $block->getData('element_name');
+$currentValue = $block->getData('current_value');
+
+$selectedIds = explode(',', (string)$currentValue);
+$categories = $block->getCategoryCollection();
+?>
+
+<input type="hidden" id="<?= $block->escapeHtmlAttr($elementId) ?>" 
+       name="<?= $block->escapeHtmlAttr($elementName) ?>" 
+       value="<?= $block->escapeHtmlAttr($currentValue) ?>" />
+
+<div class="triniti-category-list-wrapper" style="border: 1px solid #adadad; padding: 10px; max-height: 300px; overflow-y: auto; background: #fff;">
+    <?php if (count($categories) > 0): ?>
+        <ul style="list-style: none; padding: 0; margin: 0;">
+            <?php foreach ($categories as $category): ?>
+                <?php 
+                    $level = (int)$category->getLevel();
+                    $padding = max(0, ($level - 1) * 20); 
+                    $catId = $category->getId();
+                    $isChecked = in_array($catId, $selectedIds);
+                ?>
+                <li style="margin-bottom: 4px; padding-left: <?= $padding ?>px;">
+                    <label style="cursor: pointer;">
+                        <input type="checkbox" 
+                               class="triniti-cat-checkbox" 
+                               value="<?= $catId ?>" 
+                               <?= $isChecked ? 'checked="checked"' : '' ?> 
+                               style="margin-right: 5px; vertical-align: text-top;">
+                        <?= $block->escapeHtml($category->getName()) ?> 
+                        <span style="color: #999; font-size: 11px;">(ID: <?= $catId ?>)</span>
+                    </label>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php else: ?>
+        <p>Категорії не знайдено.</p>
+    <?php endif; ?>
+</div>
+
+<script>
+require(['jquery'], function($){
+    var hiddenInput = $('#<?= $block->escapeHtmlAttr($elementId) ?>');
+    
+    function updateHiddenInput() {
+        var selected = [];
+        $('.triniti-cat-checkbox:checked').each(function(){
+            selected.push($(this).val());
+        });
+        hiddenInput.val(selected.join(','));
+    }
+    $('.triniti-cat-checkbox').on('change', function(){
+        updateHiddenInput();
+    });
+});
+</script>

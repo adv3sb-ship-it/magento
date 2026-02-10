@@ -1,0 +1,6 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Mirasvit\LayeredNavigation\Block\Renderer\LabelRenderer" type="Triniti\LayeredNavigationSeo\Block\Renderer\LabelRenderer" />
+    <preference for="Mirasvit\LayeredNavigation\Block\Renderer\CategoryRenderer" type="Triniti\LayeredNavigationSeo\Block\Renderer\CategoryRenderer" />
+    <preference for="Mirasvit\Brand\Plugin\Frontend\FilterCollectionByBrandPlugin" type="Triniti\LayeredNavigationSeo\Plugin\MirasvitBrand\FilterCollectionByBrandPlugin" />
+</config>
