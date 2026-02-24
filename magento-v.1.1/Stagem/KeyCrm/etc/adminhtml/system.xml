@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="keycrm" translate="label" sortOrder="300">
+            <label>KeyCRM</label>
+        </tab>
+        <section id="keycrm" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Settings</label>
+            <tab>keycrm</tab>
+            <resource>Stagem_KeyCrm::keycrm_configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Main settings</label>
+                <field id="api_key" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API key</label>
+                    <comment><![CDATA[
+<script type="text/javascript">//<![CDATA[
+    require(['jquery'], function(){
+        if (!jQuery('#keycrm_general_api_key').val()) {
+            toggleDependantGroups();
+        }
+
+        function toggleDependantGroups()
+        {
+
+                                jQuery('#keycrm_statusList-head').closest('div.section-config').hide();
+                                jQuery('#keycrm_sourceList-head').closest('div.section-config').hide();
+                                jQuery('#keycrm_paymentList-head').closest('div.section-config').hide();
+                                jQuery('#keycrm_load-head').closest('div.section-config').hide();
+                                jQuery('#keycrm_shippingList-head').closest('div.section-config').hide()
+                                jQuery('#keycrm_product_types_to_send-head').closest('div.section-config').hide()
+
+        }
+    });
+</script>]]></comment>
+                    <backend_model>Stagem\KeyCrm\Model\Config\Backend\ApiKey</backend_model>
+                </field>
+            </group>
+            <group id="sourceList" translate="label"  sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Source</label>
+                <field id="sourceList" translate="label" type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>source settings</label>
+                    <source_model>Stagem\KeyCrm\Model\Config\Backend\SourceCrm</source_model>
+                </field>
+            </group>
+            <group id="shippingList" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Delivery types</label>
+                <field id="shippingList" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>shipping settings</label>
+                    <frontend_model>Stagem\KeyCrm\Block\Adminhtml\System\Config\Form\Fieldset\ShippingList</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="paymentList" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Payment types</label>
+                <field id="paymentList" translate="label" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>payment settings</label>
+                    <frontend_model>Stagem\KeyCrm\Block\Adminhtml\System\Config\Form\Fieldset\PaymentList</frontend_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="statusList" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Status types</label>
+                <field id="statusList" translate="label"  type="multiselect" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>status settings</label>
+                    <source_model>Stagem\KeyCrm\Model\Config\Backend\OrderStatuses</source_model>
+                    <backend_model>Magento\Config\Model\Config\Backend\Serialized\ArraySerialized</backend_model>
+                </field>
+            </group>
+            <group id="load" translate="label" type="text" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Uploading orders</label>
+                <field id="number_order" translate="label" type="text" sortOrder="6" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Order number</label>
+                    <comment>Enter order numbers separated by a comma, or range separated by "-" for uploading</comment>
+                </field>
+                <field id="button_order" translate="label comment" type="button" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <frontend_model>Stagem\KeyCrm\Block\Adminhtml\System\Config\Button</frontend_model>
+                </field>
+            </group>
+            <group id="product_types_to_send" translate="label" type="select" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Product types for send when bought configurable, bundle, grouped products</label>
+                <field id="product_types_to_send" translate="label"  type="select" sortOrder="5" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Select product types for send when bought configurable, bundle, grouped product</label>
+                    <source_model>Stagem\KeyCrm\Model\Config\Backend\ProductTypes</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

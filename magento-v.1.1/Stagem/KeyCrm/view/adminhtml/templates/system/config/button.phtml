@@ -1,0 +1,27 @@
+<script>
+require([
+    'jquery',
+    'prototype',
+], function(jQuery){
+    function syncronize() {
+        var numbers = $('keycrm_load_number_order').getValue();
+
+        new Ajax.Request('<?php echo $block->getAjaxSyncUrl() ?>', {
+            loaderArea:     true,
+            asynchronous:   true,
+            parameters:     {numbers:numbers},
+            onSuccess: function(transport) {
+                if (transport.responseJSON.success === false) {
+                    alert(transport.responseJSON.error);
+                }
+            }
+        });
+    }
+
+    jQuery('#order_button').click(function () {
+    	syncronize();
+    });
+});
+</script>
+
+<?php echo $block->getButtonHtml() ?>
